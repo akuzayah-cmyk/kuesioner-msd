@@ -56,10 +56,11 @@ main.wide{max-width:1180px}
 .eyebrow{font:500 .72rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
 
 .sec{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);margin-bottom:16px}
-.sec>header{display:flex;gap:12px;align-items:baseline;padding:14px 18px;border-bottom:1px solid var(--line)}
+.sec>header{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;padding:14px 18px;border-bottom:1px solid var(--line)}
 .sec>header .k{font:600 .9rem var(--f-mono);color:var(--accent);min-width:1.4em}
 .sec>header h3{margin:0;font-size:1.02rem;font-weight:600}
-.sec>header .who{margin-left:auto;font-size:.78rem;color:var(--muted);white-space:nowrap}
+.sec>header .who{margin-left:auto;font-size:.78rem;color:var(--muted)}
+.sec{scroll-margin-top:130px}
 .sec .body{padding:16px 18px;display:grid;gap:16px}
 .hint{font-size:.86rem;color:var(--muted);margin:0}
 
@@ -77,8 +78,8 @@ input.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
 .opts.col{flex-direction:column;align-items:stretch}
 .opt{position:relative}
 .opt input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
-.opt span{display:inline-flex;gap:8px;align-items:center;padding:8px 13px;border:1px solid var(--line);border-radius:6px;background:var(--bg);font-size:.9rem;cursor:pointer;width:100%}
-.opt span::before{content:"";width:14px;height:14px;border:1.5px solid var(--muted);border-radius:50%;flex:none}
+.opt>span{display:block;position:relative;padding:8px 13px 8px 34px;border:1px solid var(--line);border-radius:6px;background:var(--bg);font-size:.9rem;line-height:1.4;cursor:pointer}
+.opt>span::before{content:"";position:absolute;left:12px;top:50%;transform:translateY(-50%);width:14px;height:14px;border:1.5px solid var(--muted);border-radius:50%;box-sizing:border-box}
 .opt input[type=checkbox]+span::before{border-radius:3px}
 .opt input:checked+span{border-color:var(--accent);background:var(--accent-soft);color:var(--ink)}
 .opt input:checked+span::before{border-color:var(--accent);background:radial-gradient(circle,var(--accent) 45%,transparent 50%)}
@@ -114,7 +115,7 @@ td .opts{flex-wrap:nowrap}
 .region-row{display:grid;gap:12px;grid-template-columns:minmax(0,220px) minmax(0,1fr)}
 @media (max-width:620px){.region-row{grid-template-columns:1fr}}
 
-.status{display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;font-size:.9rem;font-weight:500}
+.status{display:block;padding:10px 14px;border-radius:6px;font-size:.9rem;font-weight:500}
 .status.ok{background:var(--ok-soft);color:var(--ok)}
 .status.bad{background:var(--bad-soft);color:var(--bad)}
 .status.neutral{background:var(--surface-2);color:var(--muted)}
@@ -135,6 +136,35 @@ td .opts{flex-wrap:nowrap}
 .msg{font-size:.88rem}
 @media (max-width:520px){.actions .btn{flex:1 1 auto}.actions{gap:8px}}
 .msg.ok{color:var(--ok)}.msg.bad{color:var(--bad)}
+
+/* REBA frames */
+.frames{display:grid;gap:12px}
+details.frame{border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+details.frame>summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-weight:600}
+details.frame>summary::-webkit-details-marker{display:none}
+details.frame>summary::before{content:"▸";color:var(--accent);transition:transform .15s}
+details.frame[open]>summary::before{transform:rotate(90deg)}
+details.frame>summary .sum{margin-left:auto;font:500 .82rem var(--f-mono);color:var(--muted)}
+.frame-body{padding:4px 14px 14px;display:grid;gap:14px}
+.grp{border:1px solid var(--line);border-radius:6px;padding:12px;display:grid;gap:12px;margin:0;min-width:0}
+.grp>legend{font-weight:600;font-size:.88rem;padding:0 6px;color:var(--accent)}
+.grp .row{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));align-items:start}
+.grp .opts .opt>span{font-size:.84rem}
+.mini{display:flex;flex-wrap:wrap;gap:6px 14px;font:500 .84rem var(--f-mono);font-variant-numeric:tabular-nums;color:var(--muted);padding:8px 10px;background:var(--surface-2);border-radius:6px}
+.mini b{color:var(--ink)}
+.result{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:10px 12px;border-radius:6px;background:var(--accent-soft);font-variant-numeric:tabular-nums}
+.result .big{font:600 1.35rem var(--f-display)}
+/* months & tilik */
+.months{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.month{border:1px solid var(--line);border-radius:6px;padding:12px;display:grid;gap:10px}
+.month h4{margin:0;font-size:.9rem}
+.tilik{display:grid;gap:8px}
+.tilik-row{display:grid;gap:8px;grid-template-columns:minmax(0,1fr) auto;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.tilik-row:last-child{border-bottom:0}
+.tilik-row .no{font:600 .82rem var(--f-mono);color:var(--accent);margin-right:6px}
+@media (max-width:620px){.tilik-row{grid-template-columns:1fr}}
+.blind-banner{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;padding:12px 14px;margin-bottom:16px;border-radius:6px;background:var(--warn-soft);color:var(--warn);font-size:.9rem}
+form.blind #sec-reba{display:none}
 
 /* admin */
 .login{max-width:380px;margin:40px auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:grid;gap:14px}
@@ -177,7 +207,7 @@ window.API_URL = "https://script.google.com/macros/s/AKfycbz3Q_PyyuTmeVcqChymsIZ
 </script>
 </head>
 <body>
-<div class="demo-bar" id="demoBar" hidden><div>Mode pratinjau: data tersimpan sementara di peramban ini dan berisi contoh (kode CONTOH-…). Setelah dipasang di Google Apps Script, semua data masuk ke Google Sheet. Kata sandi admin pratinjau: <b>admin123</b></div></div>
+<div class="demo-bar" id="demoBar" hidden><div>Mode uji lokal: data tersimpan di peramban ini saja dan berisi contoh (kode CONTOH-…). Setelah dipasang di Google Apps Script, semua data masuk ke Google Sheet. Kata sandi admin pratinjau: <b>admin123</b></div></div>
 
 <header class="top">
   <div class="top-in">
@@ -189,6 +219,7 @@ window.API_URL = "https://script.google.com/macros/s/AKfycbz3Q_PyyuTmeVcqChymsIZ
       <button class="tab" role="tab" data-view="responden" aria-selected="true"><span class="n">F1</span>Formulir Responden</button>
       <button class="tab" role="tab" data-view="observasi" aria-selected="false"><span class="n">F2</span>Observasi Klinis</button>
       <button class="tab" role="tab" data-view="pelayanan" aria-selected="false"><span class="n">F3</span>Data Pelayanan</button>
+      <button class="tab" role="tab" data-view="fasilitas" aria-selected="false"><span class="n">F4</span>Data Fasilitas</button>
       <button class="tab" role="tab" data-view="admin" aria-selected="false"><span class="n">⚙</span>Dashboard Admin</button>
     </nav>
   </div>
@@ -200,7 +231,7 @@ window.API_URL = "https://script.google.com/macros/s/AKfycbz3Q_PyyuTmeVcqChymsIZ
 <section id="view-responden" class="view">
   <div class="view-head">
     <div>
-      <div class="eyebrow">Formulir 1 dari 3</div>
+      <div class="eyebrow">Formulir 1 dari 4</div>
       <h2>Formulir Responden</h2>
       <p>Kajian kondisi kerja dan keluhan muskuloskeletal. Skrining diisi peneliti; karakteristik dan keluhan diisi peneliti melalui wawancara.</p>
     </div>
@@ -295,9 +326,9 @@ window.API_URL = "https://script.google.com/macros/s/AKfycbz3Q_PyyuTmeVcqChymsIZ
 <section id="view-observasi" class="view" hidden>
   <div class="view-head">
     <div>
-      <div class="eyebrow">Formulir 2 dari 3</div>
+      <div class="eyebrow">Formulir 2 dari 4</div>
       <h2>Formulir Observasi Klinis</h2>
-      <p>Diisi oleh peneliti. Penilaian REBA dilakukan dari rekaman setelah seluruh pengumpulan data selesai.</p>
+      <p>Diisi oleh peneliti. Di lokasi isi bagian A dan C; penilaian REBA (B) dilakukan dari rekaman setelah seluruh pengumpulan data selesai dan dapat disimpan belakangan.</p>
     </div>
     <span class="pill mute" id="obs-editing" hidden>Mengubah data tersimpan</span>
   </div>
@@ -308,7 +339,7 @@ window.API_URL = "https://script.google.com/macros/s/AKfycbz3Q_PyyuTmeVcqChymsIZ
       <div class="f"><label for="o-kode">Kode responden *</label><input id="o-kode" type="text" name="kode_responden" required autocomplete="off" list="kode-list"></div>
       <div class="f"><label for="o-rek">Kode rekaman</label><input id="o-rek" type="text" name="kode_rekaman"></div>
       <div class="f"><label for="o-tgl">Tanggal perekaman</label><input id="o-tgl" type="date" name="tanggal_perekaman"></div>
-      <div class="f"><label for="o-fas">Kode fasilitas</label><input id="o-fas" type="text" name="kode_fasilitas"></div>
+      <div class="f"><label for="o-fas">Kode fasilitas</label><input id="o-fas" type="text" name="kode_fasilitas" list="fas-list" autocomplete="off"></div>
     </div></div>
 
     <div class="sec">
@@ -344,21 +375,30 @@ window.API_URL = "https://script.google.com/macros/s/AKfycbz3Q_PyyuTmeVcqChymsIZ
       </div>
     </div>
 
-    <div class="sec">
-      <header><span class="k">B</span><h3>Penilaian REBA</h3><span class="who">dari rekaman</span></header>
+    <div class="blind-banner" id="blind-banner" hidden>
+      <b>Mode penilaian ulang (B3).</b> Bagian B1–B2 disembunyikan agar penilaian ulang tidak terpengaruh skor sebelumnya.
+      <button class="btn small" type="button" id="blind-off">Tampilkan semua bagian</button>
+    </div>
+
+    <div class="sec" id="sec-reba">
+      <header><span class="k">B</span><h3>Penilaian REBA</h3><span class="who">dari rekaman · boleh diisi belakangan</span></header>
       <div class="body">
-        <p class="hint"><b>B1. Daftar frame kandidat.</b> Frame kandidat dipilih dari postur paling berisiko. Seluruh komponen REBA dinilai pada frame yang sama. Skor akhir terisi otomatis dari Skor C + Skor Aktivitas dan masih bisa diubah.</p>
-        <div class="tbl-wrap"><table id="reba-tbl">
-          <thead><tr><th>No</th><th>Time-stamp (mm:ss)</th><th class="num">Skor A</th><th class="num">Skor B</th><th class="num">Skor C</th><th class="num">Skor Aktivitas</th><th class="num">Skor akhir REBA</th></tr></thead>
-          <tbody></tbody>
-        </table></div>
+        <div class="status neutral" id="reba-later">Di lokasi cukup isi bagian A dan C lalu simpan. Penilaian REBA dari rekaman dilanjutkan kapan saja lewat <b>Dashboard Admin → Penilaian REBA</b>.</div>
+        <div class="grid">
+          <div class="f"><label for="o-trb">Tanggal penilaian REBA</label><input id="o-trb" type="date" name="tanggal_penilaian_reba"></div>
+          <div class="f"><label for="o-pn">Penilai</label><input id="o-pn" type="text" name="penilai_reba"></div>
+        </div>
+        <figure class="figure"><img data-img="REBA" alt="Lembar kerja REBA (Rapid Entire Body Assessment): analisis leher, batang tubuh dan tungkai, serta lengan dan pergelangan tangan, dengan tabel skor A, B dan C"><figcaption>Gambar 3. Lembar kerja REBA (Hignett dan McAtamney, 2000). Ketuk untuk memperbesar.</figcaption></figure>
+        <p class="hint"><b>B1. Daftar frame kandidat.</b> Frame kandidat dipilih dari postur paling berisiko. Seluruh komponen REBA dinilai pada frame yang sama. Pilih posisi tiap bagian tubuh; Tabel A, Tabel B, Tabel C, dan skor akhir dihitung otomatis sesuai lembar kerja.</p>
+        <div id="frames" class="frames"></div>
         <div class="f"><span class="lbl">B2. Hasil pengukuran</span>
           <div class="grid">
-            <div class="f"><span class="sub">Time-stamp frame terpilih (skor akhir tertinggi)</span><div class="calc" id="out-ts">—</div></div>
-            <div class="f"><span class="sub">Skor akhir REBA</span><div class="calc" id="out-reba">—</div></div>
-            <div class="f"><span class="sub">Kategori risiko</span><div class="calc" id="out-kat">—</div></div>
+            <div class="f"><span class="sub">Time-stamp frame terpilih (skor akhir tertinggi)</span><div class="calc" id="out-ts">Terisi otomatis</div></div>
+            <div class="f"><span class="sub">Skor akhir REBA</span><div class="calc" id="out-reba">Terisi otomatis</div></div>
+            <div class="f"><span class="sub">Kategori risiko</span><div class="calc" id="out-kat">Terisi otomatis</div></div>
           </div>
-          <input type="hidden" name="ts_terpilih"><input type="hidden" name="reba_akhir"><input type="hidden" name="reba_kategori"><input type="hidden" name="reba_kategori_label">
+          <p class="hint" id="b2-hint">Bagian B2 tidak perlu diketik. Isinya diambil dari frame dengan skor akhir tertinggi setelah minimal satu frame dinilai lengkap.</p>
+          <input type="hidden" name="ts_terpilih"><input type="hidden" name="frame_terpilih"><input type="hidden" name="reba_akhir"><input type="hidden" name="reba_kategori"><input type="hidden" name="reba_kategori_label"><input type="hidden" name="status_reba">
         </div>
         <div class="tbl-wrap"><table>
           <thead><tr><th>Kode</th><th>Kategori risiko</th><th class="num">Skor</th></tr></thead>
@@ -369,13 +409,18 @@ window.API_URL = "https://script.google.com/macros/s/AKfycbz3Q_PyyuTmeVcqChymsIZ
             <tr><td class="num">4</td><td><span class="pill risk4">Tinggi</span></td><td class="num">8–10</td></tr>
             <tr><td class="num">5</td><td><span class="pill risk5">Sangat tinggi</span></td><td class="num">11–15</td></tr>
           </tbody></table></div>
-        <figure class="figure"><img data-img="REBA" alt="Lembar kerja REBA (Rapid Entire Body Assessment): analisis leher, batang tubuh dan tungkai, serta lengan dan pergelangan tangan, dengan tabel skor A, B dan C"><figcaption>Gambar 3. Lembar kerja REBA (Hignett dan McAtamney, 2000) untuk frame terpilih. Ketuk untuk memperbesar.</figcaption></figure>
-        <p class="hint"><b>B3. Penilaian ulang untuk uji keandalan</b> (hanya rekaman terpilih acak, dilakukan ≥ 1 minggu kemudian tanpa melihat B1–B2).</p>
+      </div>
+    </div>
+
+    <div class="sec" id="sec-b3">
+      <header><span class="k">B3</span><h3>Penilaian Ulang untuk Uji Keandalan</h3><span class="who">≥ 1 minggu kemudian</span></header>
+      <div class="body">
+        <p class="hint">Hanya untuk rekaman terpilih acak, dilakukan ≥ 1 minggu setelah penilaian pertama tanpa melihat B1–B2. Buka lewat <b>Dashboard Admin → Penilaian REBA → Penilaian ulang</b> agar B1–B2 tersembunyi.</p>
         <div class="grid">
-          <div class="f"><label for="o-rt">Tanggal penilaian ulang</label><input id="o-rt" type="date" name="reliabilitas_tanggal"></div>
-          <div class="f"><label for="o-rts">Time-stamp frame</label><input id="o-rts" type="text" name="reliabilitas_ts" placeholder="mm:ss"></div>
-          <div class="f"><label for="o-rs">Skor akhir REBA penilaian ulang</label><input id="o-rs" class="num" type="number" name="reliabilitas_skor" min="1" max="15" inputmode="numeric"></div>
+          <div class="f"><label for="o-rt">Tanggal penilaian ulang</label><input id="o-rt" type="date" name="reliabilitas_tanggal"><span class="sub" id="b3-earliest"></span></div>
         </div>
+        <div id="frame-r" class="frames"></div>
+        <input type="hidden" name="reliabilitas_ts"><input type="hidden" name="reliabilitas_skor"><input type="hidden" name="dipilih_ulang">
       </div>
     </div>
 
@@ -383,10 +428,7 @@ window.API_URL = "https://script.google.com/macros/s/AKfycbz3Q_PyyuTmeVcqChymsIZ
       <header><span class="k">C</span><h3>Daftar Tilik Kondisi Sarana Kerja</h3></header>
       <div class="body">
         <p class="hint">Dinilai pada sarana yang digunakan responden saat perekaman. Memenuhi bila mekanisme pengaturan dapat mengubah dan mempertahankan posisi; tidak tersedia = tidak memenuhi.</p>
-        <div class="tbl-wrap"><table id="tilik-tbl">
-          <thead><tr><th>No</th><th>Sarana</th><th>Indikator</th><th>Penilaian</th></tr></thead>
-          <tbody></tbody>
-        </table></div>
+        <div id="tilik" class="tilik"></div>
         <div class="status neutral" id="out-sarana">Skor sarana: —</div>
         <input type="hidden" name="skor_sarana">
       </div>
@@ -404,7 +446,7 @@ window.API_URL = "https://script.google.com/macros/s/AKfycbz3Q_PyyuTmeVcqChymsIZ
 <section id="view-pelayanan" class="view" hidden>
   <div class="view-head">
     <div>
-      <div class="eyebrow">Formulir 3 dari 3</div>
+      <div class="eyebrow">Formulir 3 dari 4</div>
       <h2>Formulir Data Pelayanan</h2>
       <p>Diisi oleh peneliti melalui penelusuran dokumen.</p>
     </div>
@@ -415,7 +457,7 @@ window.API_URL = "https://script.google.com/macros/s/AKfycbz3Q_PyyuTmeVcqChymsIZ
     <input type="hidden" name="id">
     <div class="sec"><div class="body grid">
       <div class="f"><label for="p-kode">Kode responden *</label><input id="p-kode" type="text" name="kode_responden" required autocomplete="off" list="kode-list"></div>
-      <div class="f"><label for="p-fas">Kode fasilitas</label><input id="p-fas" type="text" name="kode_fasilitas"></div>
+      <div class="f"><label for="p-fas">Kode fasilitas</label><input id="p-fas" type="text" name="kode_fasilitas" list="fas-list" autocomplete="off"></div>
       <div class="f"><label for="p-tgl">Tanggal penelusuran</label><input id="p-tgl" type="date" name="tanggal_penelusuran"></div>
       <div class="f"><label for="p-pd">Petugas pendamping</label><input id="p-pd" type="text" name="petugas_pendamping"></div>
     </div></div>
@@ -424,27 +466,52 @@ window.API_URL = "https://script.google.com/macros/s/AKfycbz3Q_PyyuTmeVcqChymsIZ
       <header><span class="k">A</span><h3>Beban Pelayanan Pasien</h3></header>
       <div class="body">
         <p class="hint">Periode: tiga bulan kalender penuh sebelum pengumpulan data. Sumber: rekam medis elektronik (jumlah pasien yang ditangani responden sebagai operator), jadwal kerja, dan catatan cuti.</p>
-        <div class="tbl-wrap"><table id="beban-tbl">
-          <thead><tr><th>Uraian</th>
-            <th><span class="sub">Bulan 1</span><br><input type="month" name="bulan_1" aria-label="Bulan 1"></th>
-            <th><span class="sub">Bulan 2</span><br><input type="month" name="bulan_2" aria-label="Bulan 2"></th>
-            <th><span class="sub">Bulan 3</span><br><input type="month" name="bulan_3" aria-label="Bulan 3"></th>
-            <th class="num">Jumlah</th></tr></thead>
+        <div class="months" id="months"></div>
+        <div class="tbl-wrap"><table>
+          <thead><tr><th>Uraian</th><th class="num">Jumlah 3 bulan</th></tr></thead>
           <tbody>
-            <tr><td>(a) Jumlah pasien yang ditangani sebagai operator</td><td><input class="num" type="number" min="0" name="a_1" aria-label="a bulan 1"></td><td><input class="num" type="number" min="0" name="a_2" aria-label="a bulan 2"></td><td><input class="num" type="number" min="0" name="a_3" aria-label="a bulan 3"></td><td class="num" id="sum-a">—</td></tr>
-            <tr><td>(b) Hari kerja terjadwal</td><td><input class="num" type="number" min="0" name="b_1" aria-label="b bulan 1"></td><td><input class="num" type="number" min="0" name="b_2" aria-label="b bulan 2"></td><td><input class="num" type="number" min="0" name="b_3" aria-label="b bulan 3"></td><td class="num" id="sum-b">—</td></tr>
-            <tr><td>(c) Hari tidak aktif pelayanan klinis (cuti, sakit, pelatihan, tugas luar)</td><td><input class="num" type="number" min="0" name="c_1" aria-label="c bulan 1"></td><td><input class="num" type="number" min="0" name="c_2" aria-label="c bulan 2"></td><td><input class="num" type="number" min="0" name="c_3" aria-label="c bulan 3"></td><td class="num" id="sum-c">—</td></tr>
-            <tr><td>(d) Hari pelayanan klinis aktif = (b) − (c)</td><td class="num" id="d-1">—</td><td class="num" id="d-2">—</td><td class="num" id="d-3">—</td><td class="num" id="sum-d">—</td></tr>
-          </tbody>
-        </table></div>
+            <tr><td>Σ(a) Pasien yang ditangani sebagai operator</td><td class="num" id="sum-a">—</td></tr>
+            <tr><td>Σ(b) Hari kerja terjadwal</td><td class="num" id="sum-b">—</td></tr>
+            <tr><td>Σ(c) Hari tidak aktif pelayanan klinis</td><td class="num" id="sum-c">—</td></tr>
+            <tr><td>Σ(d) Hari pelayanan klinis aktif</td><td class="num" id="sum-d">—</td></tr>
+          </tbody></table></div>
         <div class="status neutral" id="out-beban">Beban pelayanan pasien = Σ(a) ÷ Σ(d) = — pasien/hari</div>
-        <input type="hidden" name="sum_a"><input type="hidden" name="sum_b"><input type="hidden" name="sum_c"><input type="hidden" name="sum_d"><input type="hidden" name="d_1"><input type="hidden" name="d_2"><input type="hidden" name="d_3"><input type="hidden" name="beban_pelayanan">
+        <input type="hidden" name="sum_a"><input type="hidden" name="sum_b"><input type="hidden" name="sum_c"><input type="hidden" name="sum_d"><input type="hidden" name="d_1"><input type="hidden" name="d_2"><input type="hidden" name="d_3"><input type="hidden" name="beban_pelayanan"><input type="hidden" name="beban_pelayanan_desimal">
         <div class="f"><span class="lbl">Verifikasi</span><div class="opts col">
           <label class="opt"><input type="radio" name="verifikasi" value="Sesuai"><span>Sesuai jadwal kerja dan catatan cuti</span></label>
           <label class="opt"><input type="radio" name="verifikasi" value="Ada ketidaksesuaian"><span>Ada ketidaksesuaian</span></label></div>
           <input type="text" name="konfirmasi_kepada" placeholder="Dikonfirmasi kepada…" data-show-if="verifikasi=Ada ketidaksesuaian"></div>
+        <p class="hint">Karakteristik pelayanan per fasilitas sekarang diisi di <b>F4 Data Fasilitas</b>, satu kali untuk setiap fasilitas.</p>
       </div>
     </div>
+
+    <div class="actions">
+      <button class="btn primary" type="submit">Simpan formulir pelayanan</button>
+      <button class="btn" type="button" data-reset>Formulir baru</button>
+      <span class="msg" role="status"></span>
+    </div>
+  </form>
+</section>
+
+<!-- ============ FORMULIR 4: FASILITAS ============ -->
+<section id="view-fasilitas" class="view" hidden>
+  <div class="view-head">
+    <div>
+      <div class="eyebrow">Formulir 4 dari 4 · satu kali per fasilitas</div>
+      <h2>Data Fasilitas</h2>
+      <p>Karakteristik pelayanan dari Formulir Data Pelayanan bagian B. Diisi satu kali untuk setiap Puskesmas/Pustu yang didatangi, terpisah dari data responden.</p>
+    </div>
+    <span class="pill mute" id="fas-editing" hidden>Mengubah data tersimpan</span>
+  </div>
+
+  <form id="form-fasilitas" data-sheet="Fasilitas" novalidate>
+    <input type="hidden" name="id">
+    <div class="sec"><div class="body grid">
+      <div class="f"><label for="fa-kode">Kode fasilitas *</label><input id="fa-kode" type="text" name="kode_fasilitas" required autocomplete="off" placeholder="mis. F-01"></div>
+      <div class="f"><label for="fa-nama">Nama fasilitas</label><input id="fa-nama" type="text" name="nama_fasilitas" placeholder="mis. Puskesmas Tebet"></div>
+      <div class="f"><label for="fa-kec">Kecamatan</label><input id="fa-kec" type="text" name="kecamatan"></div>
+      <div class="f"><label for="fa-tgl">Tanggal pengisian</label><input id="fa-tgl" type="date" name="tanggal_pengisian"></div>
+    </div></div>
 
     <div class="sec">
       <header><span class="k">B</span><h3>Karakteristik Pelayanan</h3><span class="who">satu kali per fasilitas</span></header>
@@ -453,21 +520,23 @@ window.API_URL = "https://script.google.com/macros/s/AKfycbz3Q_PyyuTmeVcqChymsIZ
           <label class="opt"><input type="radio" name="jenis_fasilitas" value="1"><span>1 Puskesmas Kecamatan</span></label>
           <label class="opt"><input type="radio" name="jenis_fasilitas" value="2"><span>2 Puskesmas Pembantu</span></label></div></div>
         <div class="grid">
-          <div class="f"><label for="p2">2. Jumlah dokter gigi (orang)</label><input id="p2" class="num" type="number" min="0" name="jml_dokter_gigi"></div>
-          <div class="f"><label for="p3">3. Jumlah terapis gigi dan mulut (orang)</label><input id="p3" class="num" type="number" min="0" name="jml_tgm"></div>
-          <div class="f"><label for="p4">4. Jumlah dental unit aktif (unit)</label><input id="p4" class="num" type="number" min="0" name="jml_dental_unit"></div>
-          <div class="f"><label for="p5">5. Rerata pasien poli gigi per hari (periode yang sama)</label><input id="p5" class="num" type="number" min="0" step="0.1" name="rerata_pasien_poli"></div>
+          <div class="f"><label for="p2">2. Jumlah dokter gigi (orang)</label><input id="p2" class="num" type="number" min="0" step="1" name="jml_dokter_gigi" inputmode="numeric"></div>
+          <div class="f"><label for="p3">3. Jumlah terapis gigi dan mulut (orang)</label><input id="p3" class="num" type="number" min="0" step="1" name="jml_tgm" inputmode="numeric"></div>
+          <div class="f"><label for="p4">4. Jumlah dental unit aktif (unit)</label><input id="p4" class="num" type="number" min="0" step="1" name="jml_dental_unit" inputmode="numeric"></div>
+          <div class="f"><label for="p5">5. Rerata pasien poli gigi per hari (periode yang sama)</label><input id="p5" class="num" type="number" min="0" step="1" name="rerata_pasien_poli" inputmode="numeric"></div>
         </div>
+        <div class="f"><label for="fa-per">Periode data (tiga bulan yang sama dengan Formulir Data Pelayanan)</label><input id="fa-per" type="text" name="periode_data" placeholder="mis. Juli–September 2026"></div>
         <div class="f"><span class="lbl">6. Sumber data</span><div class="opts">
           <label class="opt"><input type="checkbox" name="sumber_data" value="Profil fasilitas"><span>Profil fasilitas</span></label>
           <label class="opt"><input type="checkbox" name="sumber_data" value="Data ketenagaan"><span>Data ketenagaan</span></label>
           <label class="opt"><input type="checkbox" name="sumber_data" value="Inventaris"><span>Inventaris</span></label>
           <label class="opt"><input type="checkbox" name="sumber_data" value="Rekap kunjungan"><span>Rekap kunjungan</span></label></div></div>
+        <div class="f"><label for="fa-pt">Petugas yang mendampingi</label><input id="fa-pt" type="text" name="petugas_pendamping"></div>
       </div>
     </div>
 
     <div class="actions">
-      <button class="btn primary" type="submit">Simpan formulir pelayanan</button>
+      <button class="btn primary" type="submit">Simpan data fasilitas</button>
       <button class="btn" type="button" data-reset>Formulir baru</button>
       <span class="msg" role="status"></span>
     </div>
@@ -494,6 +563,7 @@ window.API_URL = "https://script.google.com/macros/s/AKfycbz3Q_PyyuTmeVcqChymsIZ
     </div>
     <div class="subtabs" role="tablist">
       <button class="btn small" data-sub="dash" aria-selected="true">Ringkasan</button>
+      <button class="btn small" data-sub="reba" aria-selected="false">Penilaian REBA</button>
       <button class="btn small" data-sub="data" aria-selected="false">Data masuk</button>
       <button class="btn small" data-sub="report" aria-selected="false">Laporan</button>
       <button class="btn small" data-sub="set" aria-selected="false">Pengaturan</button>
@@ -511,14 +581,25 @@ window.API_URL = "https://script.google.com/macros/s/AKfycbz3Q_PyyuTmeVcqChymsIZ
       <div class="tbl-wrap"><table id="progress-tbl"></table></div>
     </div>
 
+    <div data-subview="reba" hidden>
+      <p class="hint" style="margin-bottom:12px">Daftar rekaman observasi. Lanjutkan penilaian REBA dari rekaman di sini, tandai rekaman untuk uji keandalan, lalu lakukan penilaian ulang (B3) paling cepat 1 minggu setelah penilaian pertama. Penilaian ulang dibuka dengan B1–B2 tersembunyi.</p>
+      <div class="kpis" id="reba-kpis"></div>
+      <div class="toolbar">
+        <span data-pickwrap><button class="btn" id="btn-pick" type="button">Pilih acak 20% untuk penilaian ulang</button></span>
+        <span class="msg" id="pick-msg" role="status"></span>
+      </div>
+      <div class="tbl-wrap"><table id="reba-list"></table></div>
+    </div>
+
     <div data-subview="data" hidden>
       <div class="toolbar">
         <div class="opts" id="data-sheet-pick">
           <label class="opt"><input type="radio" name="dsheet" value="Responden" checked><span>Responden</span></label>
           <label class="opt"><input type="radio" name="dsheet" value="Observasi"><span>Observasi</span></label>
           <label class="opt"><input type="radio" name="dsheet" value="Pelayanan"><span>Pelayanan</span></label>
+          <label class="opt"><input type="radio" name="dsheet" value="Fasilitas"><span>Fasilitas</span></label>
         </div>
-        <input type="text" id="data-search" placeholder="Cari kode responden…" aria-label="Cari kode responden">
+        <input type="text" id="data-search" placeholder="Cari kode…" aria-label="Cari kode responden atau fasilitas">
       </div>
       <div class="tbl-wrap"><table id="data-tbl"></table></div>
     </div>
@@ -546,6 +627,7 @@ window.API_URL = "https://script.google.com/macros/s/AKfycbz3Q_PyyuTmeVcqChymsIZ
 </main>
 
 <datalist id="kode-list"></datalist>
+<datalist id="fas-list"></datalist>
 <dialog id="zoom"><div class="dlg-bar"><span id="zoom-cap"></span><button class="btn small" type="button" id="zoom-close">Tutup</button></div><img id="zoom-img" alt=""></dialog>
 <div class="toast" id="toast" hidden></div>
 <script>
@@ -615,8 +697,65 @@ function showView(v){
 }
 $$('.tab').forEach(function(t){ t.addEventListener('click',function(){ showView(t.dataset.view); }); });
 
+
+/* ================= REBA (Hignett & McAtamney, 2000) ================= */
+// Tabel A: [skor leher 1–3][skor batang tubuh 1–5][skor tungkai 1–4]
+var TA = {
+  1:[[1,2,3,4],[2,3,4,5],[2,4,5,6],[3,5,6,7],[4,6,7,8]],
+  2:[[1,2,3,4],[3,4,5,6],[4,5,6,7],[5,6,7,8],[6,7,8,9]],
+  3:[[3,3,5,6],[4,5,6,7],[5,6,7,8],[6,7,8,9],[7,8,9,9]]
+};
+// Tabel B: [skor lengan bawah 1–2][skor lengan atas 1–6][skor pergelangan 1–3]
+var TB = {
+  1:[[1,2,2],[1,2,3],[3,4,5],[4,5,5],[6,7,8],[7,8,8]],
+  2:[[1,2,3],[2,3,4],[4,5,5],[5,6,7],[7,8,8],[8,9,9]]
+};
+// Tabel C: [Skor A 1–12][Skor B 1–12]
+var TC = [
+  [1,1,1,2,3,3,4,5,6,7,7,7],[1,2,2,3,4,4,5,6,6,7,7,8],[2,3,3,3,4,5,6,7,7,8,8,8],[3,4,4,4,5,6,7,8,8,9,9,9],
+  [4,4,4,5,6,7,8,8,9,9,9,9],[6,6,6,7,8,8,9,9,10,10,10,10],[7,7,7,8,9,9,9,10,10,11,11,11],[8,8,8,9,10,10,10,10,10,11,11,11],
+  [9,9,9,10,10,10,11,11,11,12,12,12],[10,10,10,11,11,11,11,12,12,12,12,12],[11,11,11,11,12,12,12,12,12,12,12,12],[12,12,12,12,12,12,12,12,12,12,12,12]
+];
+var FR = ['leher','leher_adj','batang','batang_adj','tungkai','tungkai_adj','beban','beban_kejut','lengan_atas','la_naik','la_abduksi','la_tumpu','lengan_bawah','pergelangan','perg_adj','coupling','akt_statis','akt_ulang','akt_cepat'];
+function rebaCompute(v){
+  var o={};
+  if(v.leher) o.leher=Math.min(3, v.leher+(v.leher_adj?1:0));
+  if(v.batang) o.batang=Math.min(5, v.batang+(v.batang_adj?1:0));
+  if(v.tungkai) o.tungkai=Math.min(4, v.tungkai+(v.tungkai_adj||0));
+  if(o.leher && o.batang && o.tungkai) o.ta=TA[o.leher][o.batang-1][o.tungkai-1];
+  if(o.ta!=null && v.beban!=null) o.a=o.ta+v.beban+(v.beban_kejut?1:0);
+  if(v.lengan_atas) o.la=Math.max(1, Math.min(6, v.lengan_atas+(v.la_naik?1:0)+(v.la_abduksi?1:0)-(v.la_tumpu?1:0)));
+  if(v.lengan_bawah) o.lb=v.lengan_bawah;
+  if(v.pergelangan) o.pg=Math.min(3, v.pergelangan+(v.perg_adj?1:0));
+  if(o.la && o.lb && o.pg) o.tb=TB[o.lb][o.la-1][o.pg-1];
+  if(o.tb!=null && v.coupling!=null) o.b=o.tb+v.coupling;
+  o.akt=(v.akt_statis?1:0)+(v.akt_ulang?1:0)+(v.akt_cepat?1:0);
+  if(o.a!=null && o.b!=null){ o.c=TC[Math.min(12,o.a)-1][Math.min(12,o.b)-1]; o.reba=o.c+o.akt; }
+  return o;
+}
+function frameCalc(d,p){ var v={}; FR.forEach(function(k){ v[k]=num(d[p+'_'+k]); }); return rebaCompute(v); }
+var FRAME_OUT = {leher:'skor_leher',batang:'skor_batang',tungkai:'skor_tungkai',ta:'tabel_a',a:'a',la:'skor_lengan_atas',lb:'skor_lengan_bawah',pg:'skor_pergelangan',tb:'tabel_b',b:'b',c:'c',akt:'akt',reba:'reba'};
+function frameOut(o,p){ var f={}; Object.keys(FRAME_OUT).forEach(function(k){ f[p+'_'+FRAME_OUT[k]] = o[k]==null?'':o[k]; }); return f; }
+/** Semua nilai turunan Formulir Observasi dari isian mentah. */
+function obsDerived(d){
+  var out={}, best=null;
+  [1,2,3].forEach(function(i){ var p='f'+i, o=frameCalc(d,p); Object.assign(out, frameOut(o,p));
+    if(o.reba!=null && (!best || o.reba>best.o.reba)) best={i:i,o:o,ts:d[p+'_ts']}; });
+  var kat = best? rebaCat(best.o.reba) : null;
+  out.ts_terpilih = best? (best.ts||('Frame '+best.i)) : '';
+  out.frame_terpilih = best? best.i : '';
+  out.reba_skor_a = best? best.o.a : ''; out.reba_skor_b = best? best.o.b : ''; out.reba_skor_c = best? best.o.c : ''; out.reba_aktivitas = best? best.o.akt : '';
+  out.reba_akhir = best? best.o.reba : '';
+  out.reba_kategori = kat||''; out.reba_kategori_label = kat? REBA_CAT[kat] : '';
+  out.status_reba = best? 'Selesai' : 'Belum dinilai';
+  var r=frameCalc(d,'r'); Object.assign(out, frameOut(r,'r'));
+  out.reliabilitas_skor = r.reba!=null? r.reba : '';
+  out.reliabilitas_ts = r.reba!=null? (d.r_ts||'') : '';
+  return out;
+}
+
 /* ================= Build dynamic parts ================= */
-// C: regions
+// C (Responden): regio + NRS
 $('#regions').innerHTML = REGIONS.map(function(r){
   var btns=''; for(var i=0;i<=10;i++) btns+='<button type="button" data-v="'+i+'" class="'+(i>=8?'hi':'')+'" style="background:'+NRS_COL[i]+'" aria-pressed="false" aria-label="NRS '+i+'">'+i+'</button>';
   return '<div class="region-card" data-region="'+r.k+'"><h4>'+r.t+'</h4><div class="region-row">'+
@@ -633,27 +772,77 @@ $$('.region-card').forEach(function(card){
     card.querySelector('input[type=hidden]').value=b.dataset.v; calcResponden();
   }); });
 });
-// REBA frames
-$('#reba-tbl tbody').innerHTML=[1,2,3].map(function(i){
-  return '<tr><td class="num">'+i+'</td><td><input type="text" name="f'+i+'_ts" placeholder="mm:ss" aria-label="Time-stamp frame '+i+'"></td>'+
-  ['a','b','c','akt','reba'].map(function(c){ var mx={a:12,b:12,c:12,akt:3,reba:15}[c]; return '<td><input class="num" type="number" min="'+(c==='akt'?0:1)+'" max="'+mx+'" name="f'+i+'_'+c+'" aria-label="Skor '+c+' frame '+i+'"></td>'; }).join('')+'</tr>';
-}).join('');
-// Tilik
-$('#tilik-tbl tbody').innerHTML=TILIK.map(function(t,i){
+
+// B (Observasi): kalkulator frame REBA
+function selF(name,label,opts){
+  return '<label for="'+name+'">'+label+'</label><select id="'+name+'" name="'+name+'" data-num><option value="">— pilih —</option>'+
+    opts.map(function(o){ return '<option value="'+o[0]+'">'+o[1]+'</option>'; }).join('')+'</select>';
+}
+function cbF(name,label){ return '<label class="opt"><input type="checkbox" name="'+name+'" value="1"><span>'+label+'</span></label>'; }
+function frameHTML(p,title,open){
+  var n=function(k){ return p+'_'+k; };
+  var hid=Object.keys(FRAME_OUT).map(function(k){ return '<input type="hidden" name="'+n(FRAME_OUT[k])+'" data-num>'; }).join('');
+  return '<details class="frame" data-frame="'+p+'"'+(open?' open':'')+'><summary>'+title+'<span class="sum" data-sum>belum dinilai</span></summary><div class="frame-body">'+
+    '<div class="grid"><div class="f"><label for="'+n('ts')+'">Time-stamp (mm:ss)</label><input id="'+n('ts')+'" type="text" name="'+n('ts')+'" placeholder="mm:ss" autocomplete="off"></div></div>'+
+    '<fieldset class="grp"><legend>Grup A · Leher, batang tubuh, tungkai</legend><div class="row">'+
+      '<div class="f">'+selF(n('leher'),'Langkah 1 · Posisi leher',[[1,'+1 · Fleksi 0–20°'],[2,'+2 · Fleksi > 20° atau ekstensi']])+
+        '<div class="opts">'+cbF(n('leher_adj'),'+1 leher memutar dan/atau miring ke samping')+'</div></div>'+
+      '<div class="f">'+selF(n('batang'),'Langkah 2 · Posisi batang tubuh',[[1,'+1 · Tegak'],[2,'+2 · Fleksi 0–20° atau ekstensi 0–20°'],[3,'+3 · Fleksi 20–60° atau ekstensi > 20°'],[4,'+4 · Fleksi > 60°']])+
+        '<div class="opts">'+cbF(n('batang_adj'),'+1 batang tubuh memutar dan/atau miring ke samping')+'</div></div>'+
+      '<div class="f">'+selF(n('tungkai'),'Langkah 3 · Tungkai',[[1,'+1 · Tumpuan kedua kaki, berjalan, atau duduk'],[2,'+2 · Tumpuan satu kaki atau tidak stabil']])+
+        selF(n('tungkai_adj'),'Penyesuaian lutut',[[0,'+0 · Lutut tidak menekuk / < 30°'],[1,'+1 · Lutut menekuk 30–60°'],[2,'+2 · Lutut menekuk > 60° (bukan saat duduk)']])+'</div>'+
+      '<div class="f">'+selF(n('beban'),'Langkah 5 · Beban/gaya',[[0,'+0 · < 5 kg (< 11 lbs)'],[1,'+1 · 5–10 kg (11–22 lbs)'],[2,'+2 · > 10 kg (> 22 lbs)']])+
+        '<div class="opts">'+cbF(n('beban_kejut'),'+1 ada kejutan atau gaya yang meningkat cepat')+'</div></div>'+
+    '</div><div class="mini" data-out="a"></div></fieldset>'+
+    '<fieldset class="grp"><legend>Grup B · Lengan atas, lengan bawah, pergelangan</legend><div class="row">'+
+      '<div class="f">'+selF(n('lengan_atas'),'Langkah 7 · Posisi lengan atas',[[1,'+1 · 20° ekstensi s.d. 20° fleksi'],[2,'+2 · Ekstensi > 20° atau fleksi 20–45°'],[3,'+3 · Fleksi 45–90°'],[4,'+4 · Fleksi > 90°']])+
+        '<div class="opts col">'+cbF(n('la_naik'),'+1 bahu terangkat')+cbF(n('la_abduksi'),'+1 lengan atas abduksi atau berotasi')+cbF(n('la_tumpu'),'−1 lengan ditopang atau bersandar')+'</div></div>'+
+      '<div class="f">'+selF(n('lengan_bawah'),'Langkah 8 · Posisi lengan bawah',[[1,'+1 · Fleksi 60–100°'],[2,'+2 · Fleksi < 60° atau > 100°']])+'</div>'+
+      '<div class="f">'+selF(n('pergelangan'),'Langkah 9 · Posisi pergelangan tangan',[[1,'+1 · Fleksi/ekstensi 0–15°'],[2,'+2 · Fleksi/ekstensi > 15°']])+
+        '<div class="opts">'+cbF(n('perg_adj'),'+1 menekuk ke samping (deviasi) atau memutar')+'</div></div>'+
+      '<div class="f">'+selF(n('coupling'),'Langkah 11 · Coupling (pegangan)',[[0,'+0 · Baik: pegangan pas, genggaman kuat'],[1,'+1 · Cukup: dapat diterima, tidak ideal'],[2,'+2 · Kurang: tidak dapat diterima walau mungkin'],[3,'+3 · Tidak dapat diterima: canggung, tidak aman']])+'</div>'+
+    '</div><div class="mini" data-out="b"></div></fieldset>'+
+    '<fieldset class="grp"><legend>Langkah 13 · Skor aktivitas</legend><div class="opts col">'+
+      cbF(n('akt_statis'),'+1 satu atau lebih bagian tubuh statis > 1 menit')+
+      cbF(n('akt_ulang'),'+1 gerakan berulang rentang kecil (> 4 kali per menit)')+
+      cbF(n('akt_cepat'),'+1 perubahan postur besar dan cepat, atau dasar tidak stabil')+
+    '</div></fieldset>'+
+    '<div class="result" data-out="r"></div>'+hid+
+  '</div></details>';
+}
+$('#frames').innerHTML = [1,2,3].map(function(i){ return frameHTML('f'+i,'Frame '+i,i===1); }).join('');
+$('#frame-r').innerHTML = frameHTML('r','Frame penilaian ulang',true);
+(function(){ var f=$('#form-observasi'); ['reba_skor_a','reba_skor_b','reba_skor_c','reba_aktivitas'].forEach(function(n){ var h=document.createElement('input'); h.type='hidden'; h.name=n; h.setAttribute('data-num',''); f.appendChild(h); }); })();
+
+// C (Observasi): daftar tilik
+$('#tilik').innerHTML=TILIK.map(function(t,i){
   var n='t'+(i+1);
-  return '<tr><td class="num">'+(i+1)+'</td><td>'+t[0]+'</td><td>'+t[1]+'</td><td><div class="opts">'+
+  return '<div class="tilik-row"><div><span class="no">'+(i+1)+'</span>'+t[0]+' · '+t[1]+'</div><div class="opts">'+
     '<label class="opt"><input type="radio" name="'+n+'" value="1"><span>1 = Memenuhi</span></label>'+
-    '<label class="opt"><input type="radio" name="'+n+'" value="0"><span>0 = Tidak memenuhi</span></label></div></td></tr>';
+    '<label class="opt"><input type="radio" name="'+n+'" value="0"><span>0 = Tidak memenuhi</span></label></div></div>';
 }).join('');
+
+// A (Pelayanan): kartu per bulan
+$('#months').innerHTML=[1,2,3].map(function(m){
+  function inp(k,label){ return '<div class="f"><label for="'+k+'_'+m+'">'+label+'</label><input id="'+k+'_'+m+'" class="num" type="number" min="0" step="1" inputmode="numeric" name="'+k+'_'+m+'"></div>'; }
+  return '<div class="month"><h4>Bulan '+m+'</h4>'+
+    '<div class="f"><label for="bulan_'+m+'">Bulan dan tahun</label><input id="bulan_'+m+'" type="month" name="bulan_'+m+'"></div>'+
+    inp('a','(a) Pasien yang ditangani sebagai operator')+inp('b','(b) Hari kerja terjadwal')+inp('c','(c) Hari tidak aktif pelayanan klinis (cuti, sakit, pelatihan, tugas luar)')+
+    '<div class="f"><span class="lbl">(d) Hari pelayanan klinis aktif = (b) − (c)</span><div class="calc" id="d-'+m+'">—</div></div></div>';
+}).join('');
+
 // numeric hidden fields
-['usia','masa_kerja','durasi_rekaman','durasi_penilaian','reba_akhir','reba_kategori','skor_sarana','sum_a','sum_b','sum_c','sum_d','d_1','d_2','d_3','beban_pelayanan'].forEach(function(n){ $$('input[name="'+n+'"]').forEach(function(e){ e.setAttribute('data-num',''); }); });
+['usia','masa_kerja','durasi_rekaman','durasi_penilaian','reba_akhir','reba_kategori','frame_terpilih','reliabilitas_skor','skor_sarana','sum_a','sum_b','sum_c','sum_d','d_1','d_2','d_3','beban_pelayanan','beban_pelayanan_desimal'].forEach(function(n){ $$('input[name="'+n+'"]').forEach(function(e){ e.setAttribute('data-num',''); }); });
 var NUM_RADIO = /^(c1_|t\d|b2_|b3_|kelompok_tindakan|jenis_fasilitas)/;
+var KEYF = {Responden:'kode_responden',Observasi:'kode_responden',Pelayanan:'kode_responden',Fasilitas:'kode_fasilitas'};
+var FORM_OF = {Responden:'form-responden',Observasi:'form-observasi',Pelayanan:'form-pelayanan',Fasilitas:'form-fasilitas'};
+var VIEW_OF = {Responden:'responden',Observasi:'observasi',Pelayanan:'pelayanan',Fasilitas:'fasilitas'};
 
 /* ================= Form data ================= */
 function getData(form){
   var o={}, seen={};
   $$('[name]',form).forEach(function(el){
-    var n=el.name; if(!n || el.closest('[data-skip]')) return;
+    var n=el.name; if(!n) return;
     if(el.type==='radio'){ if(!(n in o)) o[n]=''; if(el.checked) o[n]= NUM_RADIO.test(n)? Number(el.value) : el.value; }
     else if(el.type==='checkbox'){ if(!seen[n]){ seen[n]=1; o[n]=[]; } if(el.checked) o[n].push(el.value); }
     else if(el.type==='number' || el.hasAttribute('data-num')){ var v=num(el.value); o[n]= v==null?'':v; }
@@ -674,32 +863,30 @@ function setData(form,rec){
   });
   recalc(form);
 }
+function setHidden(form,n,v){ var e=form.querySelector('input[type=hidden][name="'+n+'"]'); if(e) e.value = v==null?'':v; }
 function toggleShowIf(form){
   $$('[data-show-if]',form).forEach(function(el){
     var p=el.getAttribute('data-show-if').split('='); var r=form.querySelector('input[name="'+p[0]+'"]:checked');
     el.hidden = !(r && r.value===p[1]);
   });
 }
-function recalc(form){ toggleShowIf(form); ({'form-responden':calcResponden,'form-observasi':calcObservasi,'form-pelayanan':calcPelayanan})[form.getAttribute("id")](); }
+var CALC = {'form-responden':function(){calcResponden();},'form-observasi':function(){calcObservasi();},'form-pelayanan':function(){calcPelayanan();},'form-fasilitas':function(){}};
+function recalc(form){ toggleShowIf(form); CALC[form.getAttribute('id')](); }
 
 /* ================= Calculations ================= */
-function setHidden(form,n,v){ var e=form.querySelector('input[name="'+n+'"]'); if(e) e.value = v==null?'':v; }
 function calcResponden(){
   var f=$('#form-responden'), d=getData(f);
-  // eligibility
   var ans=['s1','s2','s3','s4'].map(function(k){return d[k];}), el=$('#elig'), kel='';
   if(ans.indexOf('Tidak')>=0){ kel='Tidak memenuhi syarat'; el.className='status bad'; el.textContent='Tidak memenuhi syarat. Bagian B dan C tidak perlu diisi.'; }
   else if(ans.every(function(a){return a==='Ya';})){ kel='Memenuhi syarat'; el.className='status ok'; el.textContent='Memenuhi syarat. Lanjutkan ke bagian B dan C.'; }
   else { el.className='status neutral'; el.textContent='Lengkapi keempat kriteria skrining.'; }
   setHidden(f,'kelayakan',kel);
   $('#sec-b').style.opacity=$('#sec-c').style.opacity = kel==='Tidak memenuhi syarat' ? .5 : 1;
-  // age & tenure
   var yr = d.tanggal_pengisian ? Number(d.tanggal_pengisian.slice(0,4)) : new Date().getFullYear();
   var usia = num(d.b1_tahun_lahir)!=null ? yr-d.b1_tahun_lahir : null;
   var masa = num(d.b4_tahun_mulai)!=null ? yr-d.b4_tahun_mulai : null;
   $('#out-usia').textContent=(usia==null?'—':usia)+' tahun'; $('#out-masa').textContent=(masa==null?'—':masa)+' tahun';
   setHidden(f,'usia',usia); setHidden(f,'masa_kerja',masa);
-  // NRS
   REGIONS.forEach(function(r){
     var card=$('[data-region="'+r.k+'"]'), c1=d['c1_'+r.k], hid=card.querySelector('input[type=hidden]');
     if(c1===0){ hid.value='0'; }
@@ -708,29 +895,46 @@ function calcResponden(){
     card.querySelector('.nrs-val').textContent = v===''?'—':v;
   });
 }
-function minutes(t){ if(!t) return null; var p=t.split(':'); return Number(p[0])*60+Number(p[1]); }
+function minutes(t){ if(!t) return null; var p=String(t).split(':'); return Number(p[0])*60+Number(p[1]); }
+function addDays(iso,n){ if(!iso) return null; var d=new Date(String(iso).slice(0,10)+'T00:00:00'); if(isNaN(d)) return null; d.setDate(d.getDate()+n); return d; }
+function isoD(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function fmtD(d){ return d? d.toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'}) : '—'; }
+function sv(x){ return x==null||x===''? '–' : x; }
+function paintFrame(p,o,ts){
+  var box=$('[data-frame="'+p+'"]'); if(!box) return;
+  box.querySelector('[data-out="a"]').innerHTML='Leher <b>'+sv(o.leher)+'</b> · Batang tubuh <b>'+sv(o.batang)+'</b> · Tungkai <b>'+sv(o.tungkai)+'</b> → Tabel A <b>'+sv(o.ta)+'</b> + beban → <b>Skor A '+sv(o.a)+'</b>';
+  box.querySelector('[data-out="b"]').innerHTML='Lengan atas <b>'+sv(o.la)+'</b> · Lengan bawah <b>'+sv(o.lb)+'</b> · Pergelangan <b>'+sv(o.pg)+'</b> → Tabel B <b>'+sv(o.tb)+'</b> + coupling → <b>Skor B '+sv(o.b)+'</b>';
+  var kat=rebaCat(o.reba);
+  box.querySelector('[data-out="r"]').innerHTML = o.reba!=null
+    ? '<span>Tabel C <b>'+o.c+'</b> + Aktivitas <b>'+o.akt+'</b> =</span><span class="big">'+o.reba+'</span><span class="pill risk'+kat+'">'+kat+' · '+REBA_CAT[kat]+'</span>'
+    : '<span>Lengkapi semua pilihan Grup A dan Grup B untuk menghitung Skor C dan skor akhir REBA.</span>';
+  box.querySelector('[data-sum]').textContent = o.reba!=null ? ((ts?ts+' · ':'')+'REBA '+o.reba) : 'belum dinilai';
+}
 function calcObservasi(){
   var f=$('#form-observasi'), d=getData(f);
   var a=minutes(d.jam_mulai), b=minutes(d.jam_selesai), dur=(a!=null&&b!=null)? (b>=a?b-a:b+1440-a) : null;
   $('#out-durrek').textContent=(dur==null?'—':dur)+' menit'; setHidden(f,'durasi_rekaman',dur);
   var pa=num(d.periode_akhir_menit), dp= pa!=null? pa-5 : null;
   var o=$('#out-durpen'); o.textContent=(dp==null?'—':dp)+' menit'+(dp!=null&&dp<10?' · kurang dari 10 menit':''); o.style.color= dp!=null&&dp<10?'var(--bad)':''; setHidden(f,'durasi_penilaian',dp);
-  // REBA auto final
-  var best=null;
-  [1,2,3].forEach(function(i){
-    var c=num(d['f'+i+'_c']), ak=num(d['f'+i+'_akt']), fin=f.querySelector('[name="f'+i+'_reba"]');
-    if(c!=null && ak!=null && fin.dataset.manual!=='1'){ fin.value=c+ak; }
-    var s=num(fin.value);
-    if(s!=null && (best==null || s>best.s)) best={s:s,ts:d['f'+i+'_ts']||('frame '+i)};
-  });
-  var kat = best? rebaCat(best.s):null;
-  $('#out-ts').textContent= best?best.ts:'—'; $('#out-reba').textContent= best?best.s:'—';
-  $('#out-kat').innerHTML= kat? '<span class="pill risk'+kat+'">'+kat+' · '+REBA_CAT[kat]+'</span>':'—';
-  setHidden(f,'ts_terpilih',best?best.ts:''); setHidden(f,'reba_akhir',best?best.s:''); setHidden(f,'reba_kategori',kat); setHidden(f,'reba_kategori_label',kat?REBA_CAT[kat]:'');
+  var out=obsDerived(d);
+  Object.keys(out).forEach(function(k){ setHidden(f,k,out[k]); });
+  ['f1','f2','f3','r'].forEach(function(p){ paintFrame(p, frameCalc(d,p), d[p+'_ts']); });
+  var done = out.reba_akhir!=='';
+  $('#out-ts').textContent = done? out.ts_terpilih : 'Terisi otomatis';
+  $('#out-reba').textContent = done? out.reba_akhir : 'Terisi otomatis';
+  $('#out-kat').innerHTML = done? '<span class="pill risk'+out.reba_kategori+'">'+out.reba_kategori+' · '+out.reba_kategori_label+'</span>' : 'Terisi otomatis';
+  $('#reba-later').hidden = done; $('#b2-hint').hidden = done;
+  var tglReba=f.querySelector('[name=tanggal_penilaian_reba]');
+  if(done && !tglReba.value) tglReba.value=today();
+  // B3
+  var earliest = addDays(tglReba.value,7), eh=$('#b3-earliest');
+  eh.textContent = earliest ? 'Paling cepat '+fmtD(earliest)+' (1 minggu setelah penilaian pertama)' : 'Isi penilaian REBA pertama terlebih dahulu.';
+  var rt=f.querySelector('[name=reliabilitas_tanggal]');
+  if(out.reliabilitas_skor!=='' && !rt.value) rt.value=today();
+  eh.style.color = (earliest && rt.value && rt.value < isoD(earliest)) ? 'var(--bad)' : '';
   // tilik
   var vals=[1,2,3,4,5,6].map(function(i){return d['t'+i];}), filled=vals.filter(function(v){return v!=='';});
-  var sk=filled.reduce(function(s,v){return s+Number(v);},0);
-  var el=$('#out-sarana');
+  var sk=filled.reduce(function(s,v){return s+Number(v);},0), el=$('#out-sarana');
   if(filled.length===6){ setHidden(f,'skor_sarana',sk); el.className='status '+(sk===6?'ok':'neutral'); el.textContent='Skor sarana: '+sk+' dari 6 indikator memenuhi'; }
   else { setHidden(f,'skor_sarana',''); el.className='status neutral'; el.textContent='Skor sarana: '+filled.length+' dari 6 indikator sudah dinilai'; }
 }
@@ -739,49 +943,52 @@ function calcPelayanan(){
   [1,2,3].forEach(function(i){
     ['a','b','c'].forEach(function(k){ var v=num(d[k+'_'+i]); if(v!=null){S[k]+=v;has[k]++;} });
     var b=num(d['b_'+i]), c=num(d['c_'+i]), dd = b!=null ? b-(c||0) : null;
-    $('#d-'+i).textContent= dd==null?'—':dd; setHidden(f,'d_'+i,dd);
+    $('#d-'+i).textContent= dd==null?'—':dd+' hari'; setHidden(f,'d_'+i,dd);
     if(dd!=null){S.d+=dd;has.d++;}
   });
   ['a','b','c','d'].forEach(function(k){ $('#sum-'+k).textContent= has[k]?S[k]:'—'; setHidden(f,'sum_'+k, has[k]?S[k]:''); });
-  var beban = has.a && has.d && S.d>0 ? Math.round(S.a/S.d*100)/100 : null;
-  setHidden(f,'beban_pelayanan',beban);
-  var el=$('#out-beban'); el.className='status '+(beban!=null?'ok':'neutral');
-  el.textContent='Beban pelayanan pasien = Σ(a) ÷ Σ(d) = '+(beban!=null? S.a+' ÷ '+S.d+' = '+r2(beban)+' pasien/hari' : '— pasien/hari');
+  var dec = has.a && has.d && S.d>0 ? S.a/S.d : null, bul = dec!=null ? Math.round(dec) : null;
+  setHidden(f,'beban_pelayanan',bul); setHidden(f,'beban_pelayanan_desimal', dec!=null? Math.round(dec*100)/100 : '');
+  var el=$('#out-beban'); el.className='status '+(bul!=null?'ok':'neutral');
+  el.textContent='Beban pelayanan pasien = Σ(a) ÷ Σ(d) = '+(bul!=null? S.a+' ÷ '+S.d+' = '+bul+' pasien/hari (dibulatkan dari '+r2(dec)+')' : '— pasien/hari');
 }
 
 /* ================= Form wiring ================= */
-var EDIT_PILL={'form-responden':'#resp-editing','form-observasi':'#obs-editing','form-pelayanan':'#pel-editing'};
+var EDIT_PILL={'form-responden':'#resp-editing','form-observasi':'#obs-editing','form-pelayanan':'#pel-editing','form-fasilitas':'#fas-editing'};
+function setBlind(on){ var f=$('#form-observasi'); f.classList.toggle('blind',!!on); $('#blind-banner').hidden=!on; }
+$('#blind-off').addEventListener('click',function(){ setBlind(false); });
 $$('form[data-sheet]').forEach(function(form){
-  form.addEventListener('input',function(e){
-    if(/^f\d_reba$/.test(e.target.name)) e.target.dataset.manual = e.target.value===''?'0':'1';
-    recalc(form);
-  });
+  var fid=form.getAttribute('id'), sheet=form.dataset.sheet, key=KEYF[sheet];
+  form.addEventListener('input',function(){ recalc(form); });
   form.addEventListener('change',function(){ recalc(form); });
   form.querySelector('[data-reset]').addEventListener('click',function(){ newForm(form); });
   form.addEventListener('submit',function(e){
     e.preventDefault(); recalc(form);
     var msg=form.querySelector('.msg'), btn=form.querySelector('button[type=submit]');
     var d=getData(form);
-    var err=validate(form.getAttribute("id"),d);
+    var err=validate(fid,d);
     if(err){ msg.className='msg bad'; msg.textContent=err; return; }
-    if(form.getAttribute("id")==='form-responden') enrichResponden(d);
+    if(fid==='form-responden') enrichResponden(d);
     btn.disabled=true; msg.className='msg'; msg.textContent='Menyimpan…';
-    server('saveRecord', form.dataset.sheet, d).then(function(res){
+    server('saveRecord', sheet, d).then(function(res){
       form.querySelector('[name=id]').value=res.id;
-      msg.className='msg ok'; msg.textContent=(res.updated?'Perubahan tersimpan':'Tersimpan')+' untuk '+d.kode_responden+'.';
-      toast('Data '+d.kode_responden+' tersimpan ke '+(LIVE?'Google Sheet':'pratinjau'));
-      $(EDIT_PILL[form.getAttribute("id")]).hidden=false; $(EDIT_PILL[form.getAttribute("id")]).textContent='Mengubah data tersimpan · '+d.kode_responden;
+      var extra = (fid==='form-observasi' && d.status_reba!=='Selesai') ? ' Penilaian REBA bisa dilanjutkan dari Dashboard Admin → Penilaian REBA.' : '';
+      msg.className='msg ok'; msg.textContent=(res.updated?'Perubahan tersimpan':'Tersimpan')+' untuk '+d[key]+'.'+extra;
+      toast('Data '+d[key]+' tersimpan ke '+(LIVE?'Google Sheet':'pratinjau'));
+      var pill=$(EDIT_PILL[fid]); pill.hidden=false; pill.textContent='Mengubah data tersimpan · '+d[key];
       if(ADMIN.pass) loadAdmin();
     }).catch(function(e2){ msg.className='msg bad'; msg.textContent='Gagal menyimpan: '+e2.message; })
     .then(function(){ btn.disabled=false; });
   });
 });
 function newForm(form){
-  setData(form,{}); $$('[data-manual]',form).forEach(function(x){x.dataset.manual='0';});
+  setData(form,{});
   var tgl=form.querySelector('input[type=date]'); if(tgl) tgl.value=today();
-  form.querySelector('.msg').textContent=''; $(EDIT_PILL[form.getAttribute("id")]).hidden=true; recalc(form); window.scrollTo(0,0);
+  if(form.getAttribute('id')==='form-observasi'){ setBlind(false); $$('details.frame',form).forEach(function(x,i){ x.open = i===0 || x.dataset.frame==='r'; }); }
+  form.querySelector('.msg').textContent=''; $(EDIT_PILL[form.getAttribute('id')]).hidden=true; recalc(form); window.scrollTo(0,0);
 }
 function validate(id,d){
+  if(id==='form-fasilitas'){ if(!d.kode_fasilitas) return 'Isi kode fasilitas terlebih dahulu.'; return null; }
   if(!d.kode_responden) return 'Isi kode responden terlebih dahulu.';
   if(id==='form-responden'){
     for(var i=0;i<REGIONS.length;i++){ var r=REGIONS[i], v=d['c2_nrs_'+r.k]; if(v!=='' && (v<0||v>10)) return 'NRS '+r.t+' harus 0–10.'; if(d['c1_'+r.k]===1 && v==='' && d.kelayakan!=='Tidak memenuhi syarat') return 'Pilih NRS untuk regio '+r.t+'.'; }
@@ -789,11 +996,8 @@ function validate(id,d){
     if(d.b4_tahun_mulai!=='' && d.b1_tahun_lahir!=='' && d.b4_tahun_mulai<d.b1_tahun_lahir+17) return 'Tahun mulai bekerja terlalu dekat dengan tahun lahir.';
   }
   if(id==='form-observasi'){
-    for(var k=1;k<=3;k++){ var c=d['f'+k+'_c'],ak=d['f'+k+'_akt'],fin=d['f'+k+'_reba'];
-      if(ak!=='' && (ak<0||ak>3)) return 'Skor aktivitas frame '+k+' harus 0–3.';
-      if(fin!=='' && (fin<1||fin>15)) return 'Skor akhir REBA frame '+k+' harus 1–15.';
-      if(c!=='' && (c<1||c>12)) return 'Skor C frame '+k+' harus 1–12.'; }
-    if(d.reliabilitas_skor!=='' && (d.reliabilitas_skor<1||d.reliabilitas_skor>15)) return 'Skor penilaian ulang harus 1–15.';
+    var ts=['f1_ts','f2_ts','f3_ts','r_ts'];
+    for(var k=0;k<ts.length;k++){ if(d[ts[k]] && !/^\d{1,3}:[0-5]\d$/.test(d[ts[k]])) return 'Time-stamp "'+d[ts[k]]+'" harus berformat mm:ss, misalnya 06:12.'; }
   }
   if(id==='form-pelayanan'){
     for(var m=1;m<=3;m++){ if(d['c_'+m]!=='' && d['b_'+m]!=='' && d['c_'+m]>d['b_'+m]) return 'Hari tidak aktif bulan '+m+' melebihi hari kerja terjadwal.'; }
@@ -808,9 +1012,11 @@ function enrichResponden(d){
 }
 
 /* ================= Codes datalist ================= */
+function fillList(id,list){ var u={}; $(id).innerHTML=(list||[]).filter(function(k){ if(!k||u[k]) return false; u[k]=1; return true; }).map(function(k){return '<option value="'+esc(k)+'">';}).join(''); }
 function refreshKodes(){
-  server('listKodes').then(function(list){
-    var u={}; $('#kode-list').innerHTML=(list||[]).filter(function(k){ if(!k||u[k]) return false; u[k]=1; return true; }).map(function(k){return '<option value="'+esc(k)+'">';}).join('');
+  server('listKodes').then(function(res){
+    if(Array.isArray(res)) res={responden:res,fasilitas:[]};
+    fillList('#kode-list',res.responden); fillList('#fas-list',res.fasilitas);
   }).catch(function(){});
 }
 
@@ -824,17 +1030,19 @@ $('#login-form').addEventListener('submit',function(e){
 });
 $('#btn-logout').addEventListener('click',function(){ ADMIN.pass=null; ADMIN.data=null; $('#admin-area').hidden=true; $('#login-form').hidden=false; $('#adm-pass').value=''; });
 $('#btn-refresh').addEventListener('click',function(){ loadAdmin(); });
-$$('[data-sub]').forEach(function(b){ b.addEventListener('click',function(){ ADMIN.sub=b.dataset.sub; $$('[data-sub]').forEach(function(x){x.setAttribute('aria-selected',String(x===b));}); $$('[data-subview]').forEach(function(v){ v.hidden=v.dataset.subview!==ADMIN.sub; }); if(ADMIN.sub==='dash') renderCharts(); }); });
+function showSub(s){ ADMIN.sub=s; $$('[data-sub]').forEach(function(x){x.setAttribute('aria-selected',String(x.dataset.sub===s));}); $$('[data-subview]').forEach(function(v){ v.hidden=v.dataset.subview!==s; }); if(s==='dash') renderCharts(); }
+$$('[data-sub]').forEach(function(b){ b.addEventListener('click',function(){ showSub(b.dataset.sub); }); });
 $('#pass-form').addEventListener('submit',function(e){
   e.preventDefault(); var msg=this.querySelector('.msg'), np=$('#new-pass').value;
   server('changePassword',ADMIN.pass,np).then(function(){ ADMIN.pass=np; msg.className='msg ok'; msg.textContent='Kata sandi diganti.'; $('#new-pass').value=''; })
   .catch(function(e2){ msg.className='msg bad'; msg.textContent=e2.message; });
 });
 
-function latestBy(rows){ var m={}; rows.forEach(function(r){ var k=String(r.kode_responden); if(!m[k] || String(r.timestamp)>String(m[k].timestamp)) m[k]=r; }); return m; }
+function latestBy(rows,key){ key=key||'kode_responden'; var m={}; (rows||[]).forEach(function(r){ var k=String(r[key]); if(!m[k] || String(r.timestamp)>String(m[k].timestamp)) m[k]=r; }); return m; }
 function loadAdmin(){
   $('#adm-sub').textContent='Memuat data…';
   return server('getAll',ADMIN.pass).then(function(d){
+    d.Fasilitas=d.Fasilitas||[];
     ADMIN.data=d;
     var btn=$('#btn-sheet'); if(d.sheetUrl){ btn.href=d.sheetUrl; btn.hidden=false; }
     $('#adm-sub').textContent='Diperbarui '+new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'})+' · sumber: '+(LIVE?'Google Sheet':'data pratinjau');
@@ -847,13 +1055,16 @@ function merged(){
   [R,O,P].forEach(function(m){ Object.keys(m).forEach(function(k){keys[k]=1;}); });
   return Object.keys(keys).sort().map(function(k){ return {kode:k,r:R[k]||null,o:O[k]||null,p:P[k]||null}; });
 }
-function renderAll(){ renderKpis(); renderProgress(); renderData(); renderReport(); if(ADMIN.sub==='dash') renderCharts(); }
+function fasMap(){ return latestBy((ADMIN.data&&ADMIN.data.Fasilitas)||[],'kode_fasilitas'); }
+function rebaDone(o){ return !!o && num(o.reba_akhir)!=null; }
+function renderAll(){ renderKpis(); renderProgress(); renderReba(); renderData(); renderReport(); if(ADMIN.sub==='dash') renderCharts(); }
 
 function renderKpis(){
   var m=merged(), elig=m.filter(function(x){return x.r&&x.r.kelayakan==='Memenuhi syarat';});
   var full=elig.filter(function(x){return x.o&&x.p;}).length;
   var kel=elig.filter(function(x){return Number(x.r.keluhan_leher_punggung)===1;}).length;
-  var k=[[m.filter(function(x){return x.r;}).length,'responden diskrining'],[elig.length,'memenuhi syarat'],[m.filter(function(x){return x.o;}).length,'observasi klinis tersimpan'],[m.filter(function(x){return x.p;}).length,'data pelayanan tersimpan'],[full+' / '+elig.length,'responden layak dengan 3 formulir lengkap'],[elig.length? Math.round(kel/elig.length*100)+'%':'—','keluhan leher/punggung (12 bln)']];
+  var obs=m.filter(function(x){return x.o;}), pend=obs.filter(function(x){return !rebaDone(x.o);}).length;
+  var k=[[m.filter(function(x){return x.r;}).length,'responden diskrining'],[elig.length,'memenuhi syarat'],[obs.length,'observasi klinis tersimpan'],[pend,'REBA belum dinilai'],[m.filter(function(x){return x.p;}).length,'data pelayanan tersimpan'],[Object.keys(fasMap()).length,'fasilitas terdata'],[full+' / '+elig.length,'responden layak dengan 3 formulir lengkap'],[elig.length? Math.round(kel/elig.length*100)+'%':'—','keluhan leher/punggung (12 bln)']];
   $('#kpis').innerHTML=k.map(function(x){return '<div class="kpi"><b>'+esc(x[0])+'</b><span>'+x[1]+'</span></div>';}).join('');
 }
 function chk(v){ return v? '<span class="chk y" aria-label="ada">✓</span>' : '<span class="chk n" aria-label="belum">·</span>'; }
@@ -863,28 +1074,79 @@ function renderProgress(){
   $('#progress-tbl').innerHTML='<thead><tr><th>Kode</th><th>F1 Responden</th><th>Kelayakan</th><th>F2 Observasi</th><th>F3 Pelayanan</th><th class="num">REBA</th><th class="num">NRS maks</th><th class="num">Beban</th><th>Status</th></tr></thead><tbody>'+
   m.map(function(x){
     var el=x.r&&x.r.kelayakan, kat=x.o&&rebaCat(x.o.reba_akhir);
-    var st = el==='Tidak memenuhi syarat' ? '<span class="pill mute">Dikeluarkan</span>' : (x.r&&x.o&&x.p ? '<span class="pill ok">Lengkap</span>' : '<span class="pill warn">Belum lengkap</span>');
+    var st = el==='Tidak memenuhi syarat' ? '<span class="pill mute">Dikeluarkan</span>' : (x.r&&x.o&&x.p&&kat ? '<span class="pill ok">Lengkap</span>' : '<span class="pill warn">Belum lengkap</span>');
+    var reba = x.o ? (kat? '<span class="pill risk'+kat+'">'+esc(x.o.reba_akhir)+'</span>' : '<span class="pill warn">Belum dinilai</span>') : '—';
     return '<tr><td><b>'+esc(x.kode)+'</b></td><td>'+chk(x.r)+'</td><td>'+(el?'<span class="pill '+(el==='Memenuhi syarat'?'ok':'bad')+'">'+esc(el)+'</span>':'—')+'</td><td>'+chk(x.o)+'</td><td>'+chk(x.p)+'</td>'+
-      '<td class="num">'+(kat?'<span class="pill risk'+kat+'">'+esc(x.o.reba_akhir)+'</span>':'—')+'</td><td class="num">'+(x.r&&x.r.nrs_maks!==''&&x.r.nrs_maks!=null?esc(x.r.nrs_maks):'—')+'</td><td class="num">'+(x.p&&x.p.beban_pelayanan!==''?r2(x.p.beban_pelayanan):'—')+'</td><td>'+st+'</td></tr>';
+      '<td class="num">'+reba+'</td><td class="num">'+(x.r&&x.r.nrs_maks!==''&&x.r.nrs_maks!=null?esc(x.r.nrs_maks):'—')+'</td><td class="num">'+(x.p&&x.p.beban_pelayanan!==''&&x.p.beban_pelayanan!=null?esc(x.p.beban_pelayanan):'—')+'</td><td>'+st+'</td></tr>';
   }).join('')+'</tbody>';
 }
 
+/* ---- Penilaian REBA (lanjutan dari rekaman + uji ulang) ---- */
+function b3Status(o){
+  if(num(o.reliabilitas_skor)!=null) return {t:'Selesai · skor '+o.reliabilitas_skor, c:'ok'};
+  if(o.dipilih_ulang!=='Ya') return {t:'Tidak dipilih', c:'mute'};
+  if(!rebaDone(o)) return {t:'Menunggu REBA pertama', c:'mute'};
+  var ready=addDays(o.tanggal_penilaian_reba||o.tanggal_perekaman,7);
+  if(!ready || new Date()>=ready) return {t:'Siap dinilai ulang', c:'warn', ready:true};
+  return {t:'Mulai '+fmtD(ready), c:'mute'};
+}
+function renderReba(){
+  if(!ADMIN.data) return;
+  var obs=(ADMIN.data.Observasi||[]).slice().sort(function(a,b){ return String(a.kode_responden).localeCompare(String(b.kode_responden)) || String(a.kode_rekaman).localeCompare(String(b.kode_rekaman)); });
+  var done=obs.filter(rebaDone).length, sel=obs.filter(function(o){return o.dipilih_ulang==='Ya';}).length, target=Math.ceil(obs.length*0.2);
+  var relDone=obs.filter(function(o){return num(o.reliabilitas_skor)!=null;}).length, ready=obs.filter(function(o){return b3Status(o).ready;}).length;
+  $('#reba-kpis').innerHTML=[[done+' / '+obs.length,'rekaman sudah dinilai REBA'],[obs.length-done,'menunggu penilaian REBA'],[sel+' / '+target,'terpilih uji ulang (target 20%)'],[ready,'siap dinilai ulang sekarang'],[relDone,'penilaian ulang selesai']]
+    .map(function(x){return '<div class="kpi"><b>'+esc(x[0])+'</b><span>'+x[1]+'</span></div>';}).join('');
+  if(!obs.length){ $('#reba-list').innerHTML='<tbody><tr><td>Belum ada observasi. Simpan Formulir Observasi Klinis terlebih dahulu.</td></tr></tbody>'; return; }
+  $('#reba-list').innerHTML='<thead><tr><th>Kode</th><th>Rekaman</th><th>Tgl rekaman</th><th>REBA</th><th>Uji ulang (B3)</th><th class="no-print">Tindakan</th></tr></thead><tbody>'+
+    obs.map(function(o){
+      var kat=rebaCat(o.reba_akhir), s=b3Status(o), id=esc(o.id);
+      var reba = kat? '<span class="pill risk'+kat+'">'+esc(o.reba_akhir)+' · '+REBA_CAT[kat]+'</span>' : '<span class="pill warn">Belum dinilai</span>';
+      var acts='<button class="btn small'+(kat?'':' primary')+'" data-act="reba" data-id="'+id+'">'+(kat?'Ubah REBA':'Nilai REBA')+'</button> ';
+      if(o.dipilih_ulang==='Ya' && kat) acts+='<button class="btn small'+(s.ready?' primary':'')+'" data-act="b3" data-id="'+id+'">Penilaian ulang</button> ';
+      acts+='<button class="btn small" data-act="pick" data-id="'+id+'" data-v="'+(o.dipilih_ulang==='Ya'?'':'Ya')+'">'+(o.dipilih_ulang==='Ya'?'Batalkan pilihan':'Pilih untuk uji ulang')+'</button>';
+      return '<tr><td><b>'+esc(o.kode_responden)+'</b></td><td>'+esc(o.kode_rekaman||'—')+'</td><td>'+esc(o.tanggal_perekaman||'—')+'</td><td>'+reba+'</td><td><span class="pill '+s.c+'">'+esc(s.t)+'</span></td><td class="no-print" style="white-space:nowrap">'+acts+'</td></tr>';
+    }).join('')+'</tbody>';
+  $$('#reba-list [data-act]').forEach(function(b){ b.addEventListener('click',function(){
+    var act=b.dataset.act, id=b.dataset.id;
+    if(act==='reba') editRecord('Observasi',id,'reba');
+    else if(act==='b3') editRecord('Observasi',id,'b3');
+    else { b.disabled=true; server('updateFields',ADMIN.pass,'Observasi',id,{dipilih_ulang:b.dataset.v}).then(function(){ toast(b.dataset.v?'Ditandai untuk uji ulang':'Pilihan dibatalkan'); return loadAdmin(); }).catch(function(e){ toast(e.message); b.disabled=false; }); }
+  }); });
+}
+$('#btn-pick').addEventListener('click',function(){
+  var obs=ADMIN.data? ADMIN.data.Observasi||[] : [], msg=$('#pick-msg'), btn=this;
+  var target=Math.ceil(obs.length*0.2), sel=obs.filter(function(o){return o.dipilih_ulang==='Ya';}).length, need=target-sel;
+  if(!obs.length){ msg.className='msg bad'; msg.textContent='Belum ada rekaman.'; return; }
+  if(need<=0){ msg.className='msg'; msg.textContent='Sudah ada '+sel+' rekaman terpilih (target 20% = '+target+').'; return; }
+  var pool=obs.filter(function(o){return o.dipilih_ulang!=='Ya' && rebaDone(o);});
+  if(pool.length<need) pool=pool.concat(obs.filter(function(o){return o.dipilih_ulang!=='Ya' && !rebaDone(o);}));
+  for(var i=pool.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), t=pool[i]; pool[i]=pool[j]; pool[j]=t; }
+  var pick=pool.slice(0,need); btn.disabled=true; msg.className='msg'; msg.textContent='Menandai…';
+  pick.reduce(function(pr,o){ return pr.then(function(){ return server('updateFields',ADMIN.pass,'Observasi',o.id,{dipilih_ulang:'Ya'}); }); }, Promise.resolve())
+    .then(function(){ msg.className='msg ok'; msg.textContent='Terpilih acak: '+pick.map(function(o){return o.kode_responden+(o.kode_rekaman?' ('+o.kode_rekaman+')':'');}).join(', ')+'.'; return loadAdmin(); })
+    .catch(function(e){ msg.className='msg bad'; msg.textContent=e.message; }).then(function(){ btn.disabled=false; });
+});
+
+/* ---- Data masuk ---- */
 var DATA_COLS={
   Responden:[['kode_responden','Kode'],['tanggal_pengisian','Tanggal'],['kecamatan','Kecamatan'],['kelayakan','Kelayakan'],['b3_profesi','Profesi',function(v){return PROFESI[v]||'';}],['usia','Usia'],['keluhan_leher_punggung','Keluhan'],['nrs_maks','NRS maks']],
-  Observasi:[['kode_responden','Kode'],['kode_rekaman','Rekaman'],['tanggal_perekaman','Tanggal'],['nama_tindakan','Tindakan'],['reba_akhir','REBA'],['reba_kategori_label','Kategori'],['skor_sarana','Sarana /6'],['reliabilitas_skor','REBA ulang']],
-  Pelayanan:[['kode_responden','Kode'],['kode_fasilitas','Fasilitas'],['tanggal_penelusuran','Tanggal'],['sum_a','Σ pasien'],['sum_d','Σ hari aktif'],['beban_pelayanan','Beban',function(v){return v===''?'':r2(v);}],['verifikasi','Verifikasi']]
+  Observasi:[['kode_responden','Kode'],['kode_rekaman','Rekaman'],['tanggal_perekaman','Tanggal'],['nama_tindakan','Tindakan'],['status_reba','Status REBA'],['reba_akhir','REBA'],['reba_kategori_label','Kategori'],['skor_sarana','Sarana /6'],['reliabilitas_skor','REBA ulang']],
+  Pelayanan:[['kode_responden','Kode'],['kode_fasilitas','Fasilitas'],['tanggal_penelusuran','Tanggal'],['sum_a','Σ pasien'],['sum_d','Σ hari aktif'],['beban_pelayanan','Beban (pasien/hari)'],['verifikasi','Verifikasi']],
+  Fasilitas:[['kode_fasilitas','Kode'],['nama_fasilitas','Nama'],['kecamatan','Kecamatan'],['jenis_fasilitas','Jenis',function(v){return JENIS[v]||'';}],['jml_dokter_gigi','Dokter gigi'],['jml_tgm','TGM'],['jml_dental_unit','Dental unit'],['rerata_pasien_poli','Pasien poli/hari']]
 };
+var JENIS={'1':'Puskesmas Kecamatan','2':'Puskesmas Pembantu'};
 $$('input[name=dsheet]').forEach(function(r){ r.addEventListener('change',renderData); });
 $('#data-search').addEventListener('input',renderData);
 function renderData(){
   if(!ADMIN.data) return;
-  var sh=$('input[name=dsheet]:checked').value, q=$('#data-search').value.trim().toLowerCase(), cols=DATA_COLS[sh];
-  var rows=(ADMIN.data[sh]||[]).filter(function(r){ return !q || String(r.kode_responden).toLowerCase().indexOf(q)>=0; })
+  var sh=$('input[name=dsheet]:checked').value, q=$('#data-search').value.trim().toLowerCase(), cols=DATA_COLS[sh], key=KEYF[sh];
+  var rows=(ADMIN.data[sh]||[]).filter(function(r){ return !q || String(r[key]).toLowerCase().indexOf(q)>=0 || String(r.kode_fasilitas||'').toLowerCase().indexOf(q)>=0; })
     .sort(function(a,b){ return String(b.timestamp).localeCompare(String(a.timestamp)); });
   if(!rows.length){ $('#data-tbl').innerHTML='<tbody><tr><td>Tidak ada data '+sh.toLowerCase()+(q?' untuk pencarian ini':'')+'.</td></tr></tbody>'; return; }
   $('#data-tbl').innerHTML='<thead><tr>'+cols.map(function(c){return '<th>'+c[1]+'</th>';}).join('')+'<th>Disimpan</th><th class="no-print"></th></tr></thead><tbody>'+
     rows.map(function(r){ return '<tr>'+cols.map(function(c){ var v=r[c[0]]; return '<td>'+esc(c[2]?c[2](v):v)+'</td>'; }).join('')+
-      '<td>'+esc(String(r.timestamp||'').replace('T',' ').slice(0,16))+'</td><td class="no-print" style="white-space:nowrap"><button class="btn small" data-edit="'+esc(r.id)+'">Ubah</button> <span data-delwrap><button class="btn small danger" data-del="'+esc(r.id)+'">Hapus</button></span></td></tr>'; }).join('')+'</tbody>';
+      '<td>'+esc(String(r.timestamp||'').replace('T',' ').slice(0,16))+'</td><td class="no-print" style="white-space:nowrap"><button class="btn small" data-edit="'+esc(r.id)+'">Ubah</button> <span><button class="btn small danger" data-del="'+esc(r.id)+'">Hapus</button></span></td></tr>'; }).join('')+'</tbody>';
   $$('[data-edit]').forEach(function(b){ b.addEventListener('click',function(){ editRecord(sh,b.dataset.edit); }); });
   $$('[data-del]').forEach(function(b){ b.addEventListener('click',function(){
     var w=b.parentNode; w.innerHTML='<span class="confirm">Hapus permanen? <button class="btn small danger" data-yes>Ya, hapus</button><button class="btn small" data-no>Batal</button></span>';
@@ -892,15 +1154,20 @@ function renderData(){
     w.querySelector('[data-yes]').addEventListener('click',function(){ server('deleteRecord',ADMIN.pass,sh,b.dataset.del).then(function(){ toast('Data dihapus'); loadAdmin(); }).catch(function(e){ toast(e.message); }); });
   }); });
 }
-function editRecord(sh,id){
+function editRecord(sh,id,mode){
   var rec=(ADMIN.data[sh]||[]).filter(function(r){return String(r.id)===String(id);})[0]; if(!rec) return;
-  var map={Responden:['form-responden','responden'],Observasi:['form-observasi','observasi'],Pelayanan:['form-pelayanan','pelayanan']}[sh];
-  var form=document.getElementById(map[0]);
-  if(sh==='Observasi') [1,2,3].forEach(function(i){ var c=num(rec['f'+i+'_c']),a=num(rec['f'+i+'_akt']),f=num(rec['f'+i+'_reba']); form.querySelector('[name="f'+i+'_reba"]').dataset.manual = (f!=null && (c==null||a==null||c+a!==f))?'1':'0'; });
+  var form=document.getElementById(FORM_OF[sh]);
+  setBlind(false);
   setData(form,rec);
-  var pill=$(EDIT_PILL[map[0]]); pill.hidden=false; pill.textContent='Mengubah data tersimpan · '+rec.kode_responden;
+  var pill=$(EDIT_PILL[FORM_OF[sh]]); pill.hidden=false; pill.textContent='Mengubah data tersimpan · '+rec[KEYF[sh]];
   form.querySelector('.msg').textContent='';
-  showView(map[1]);
+  showView(VIEW_OF[sh]);
+  if(sh==='Observasi'){
+    $$('details.frame',form).forEach(function(x){ x.open = x.dataset.frame==='r' || x.dataset.frame==='f1' || !!form.querySelector('[name="'+x.dataset.frame+'_reba"]').value; });
+    if(mode==='b3'){ setBlind(true); var rt=form.querySelector('[name=reliabilitas_tanggal]'); if(!rt.value) rt.value=today(); recalc(form); }
+    var target = mode==='b3' ? '#sec-b3' : (mode==='reba' ? '#sec-reba' : null);
+    if(target) setTimeout(function(){ var el=$(target); if(el) el.scrollIntoView({block:'start'}); },60);
+  }
 }
 
 /* ================= Statistics ================= */
@@ -930,12 +1197,15 @@ function fmtDesc(s,d){ d=d==null?1:d; return s.n? r2(s.mean,d)+' ± '+r2(s.sd,d)
 function fmtMed(s,d){ d=d==null?1:d; return s.n? r2(s.med,d)+' ('+r2(s.q1,d)+'–'+r2(s.q3,d)+')' : '—'; }
 function fmtP(p){ if(p==null) return '—'; return p<0.001?'< 0,001':r2(p,3); }
 
+function bebanVal(p){ if(!p) return null; var v=num(p.beban_pelayanan_desimal); return v!=null? v : num(p.beban_pelayanan); }
 function buildReport(){
-  var m=merged(), elig=m.filter(function(x){return x.r&&x.r.kelayakan==='Memenuhi syarat';}), N=elig.length, S=[];
+  var m=merged(), elig=m.filter(function(x){return x.r&&x.r.kelayakan==='Memenuhi syarat';}), N=elig.length, S=[], F=fasMap(), fl=Object.keys(F).map(function(k){return F[k];});
   var countBy=function(arr,fn,labels){ var c={}; arr.forEach(function(x){ var v=fn(x); if(v===''||v==null) return; c[v]=(c[v]||0)+1; }); return Object.keys(labels).map(function(k){ return [labels[k], np(c[k]||0,arr.length)]; }); };
+  var obsAll=m.filter(function(x){return x.o;});
   S.push({t:'1. Status pengumpulan data',h:['Uraian','Jumlah'],rows:[
     ['Responden diskrining',m.filter(function(x){return x.r;}).length],['Memenuhi syarat (dianalisis)',N],['Tidak memenuhi syarat',m.filter(function(x){return x.r&&x.r.kelayakan==='Tidak memenuhi syarat';}).length],
-    ['Observasi klinis tersimpan',m.filter(function(x){return x.o;}).length],['Data pelayanan tersimpan',m.filter(function(x){return x.p;}).length],['Responden layak dengan 3 formulir lengkap',elig.filter(function(x){return x.o&&x.p;}).length]]});
+    ['Observasi klinis tersimpan',obsAll.length],['Observasi dengan REBA selesai dinilai',obsAll.filter(function(x){return rebaDone(x.o);}).length],['Data pelayanan tersimpan',m.filter(function(x){return x.p;}).length],
+    ['Fasilitas terdata',fl.length],['Responden layak dengan 3 formulir lengkap',elig.filter(function(x){return x.o&&x.p&&rebaDone(x.o);}).length]]});
   var usia=desc(vals(elig.map(function(x){return x.r.usia;}))), masa=desc(vals(elig.map(function(x){return x.r.masa_kerja;})));
   S.push({t:'2. Karakteristik responden (n = '+N+')',h:['Variabel','n (%) / Rerata ± SD','Median (min–maks)'],rows:
     countBy(elig,function(x){return String(x.r.b3_profesi);},PROFESI).map(function(r){return ['Profesi: '+r[0],r[1],''];})
@@ -947,29 +1217,42 @@ function buildReport(){
   var anyY=elig.filter(function(x){return Number(x.r.keluhan_leher_punggung)===1;}).length, nm=desc(vals(elig.map(function(x){return x.r.nrs_maks;})));
   kRows.push(['Leher dan/atau punggung',np(anyY,N),fmtMed(nm),fmtDesc(nm)]);
   S.push({t:'3. Keluhan muskuloskeletal (NMQ) dan intensitas nyeri (NRS)',h:['Regio','Keluhan 12 bulan, n (%)','NRS 7 hari, median (IQR)','NRS rerata ± SD'],rows:kRows});
-  var eo=elig.filter(function(x){return x.o;}), rs=desc(vals(eo.map(function(x){return x.o.reba_akhir;})));
+  var eo=elig.filter(function(x){return rebaDone(x.o);}), rs=desc(vals(eo.map(function(x){return x.o.reba_akhir;})));
+  var sa=desc(vals(eo.map(function(x){return x.o.reba_skor_a;}))), sb=desc(vals(eo.map(function(x){return x.o.reba_skor_b;}))), sc=desc(vals(eo.map(function(x){return x.o.reba_skor_c;})));
   var katRows=[1,2,3,4,5].map(function(k){ return ['Kategori '+k+' – '+REBA_CAT[k], np(eo.filter(function(x){return rebaCat(x.o.reba_akhir)===k;}).length, eo.length)]; });
-  S.push({t:'4. Risiko postur kerja (REBA), n = '+eo.length,h:['Uraian','Nilai'],rows:[['Skor akhir REBA, median (IQR)',fmtMed(rs,0)],['Skor akhir REBA, rerata ± SD',fmtDesc(rs)]].concat(katRows)
+  S.push({t:'4. Risiko postur kerja (REBA), n = '+eo.length,h:['Uraian','Nilai'],rows:[['Skor akhir REBA, median (IQR)',fmtMed(rs,0)],['Skor akhir REBA, rerata ± SD',fmtDesc(rs)],['Skor A (Grup A + beban), median (IQR)',fmtMed(sa,0)],['Skor B (Grup B + coupling), median (IQR)',fmtMed(sb,0)],['Skor C (Tabel C), median (IQR)',fmtMed(sc,0)]].concat(katRows)
     .concat(countBy(eo,function(x){return String(x.o.kelompok_tindakan);},KELOMPOK).map(function(r){return ['Kelompok tindakan: '+r[0],r[1]];}))
-    .concat(countBy(eo,function(x){return x.o.posisi_kerja;},{Duduk:'Duduk',Berdiri:'Berdiri',Bergantian:'Bergantian'}).map(function(r){return ['Posisi kerja: '+r[0],r[1]];}))});
-  var sar=desc(vals(eo.map(function(x){return x.o.skor_sarana;})));
-  S.push({t:'5. Kondisi sarana kerja, n = '+eo.length,h:['Sarana – indikator','Memenuhi, n (%)'],rows:TILIK.map(function(t,i){ return [t[0]+' – '+t[1], np(eo.filter(function(x){return Number(x.o['t'+(i+1)])===1;}).length,eo.length)]; }).concat([['Skor sarana (0–6), median (IQR)',fmtMed(sar,0)]])});
-  var ep=elig.filter(function(x){return x.p;}), bb=desc(vals(ep.map(function(x){return x.p.beban_pelayanan;})));
-  S.push({t:'6. Beban pelayanan pasien, n = '+ep.length,h:['Uraian','Nilai'],rows:[['Beban (pasien/hari), rerata ± SD',fmtDesc(bb,2)],['Beban (pasien/hari), median (IQR)',fmtMed(bb,2)],['Rentang',bb.n?r2(bb.min)+' – '+r2(bb.max):'—']]});
+    .concat(countBy(eo,function(x){return x.o.posisi_kerja;},{Duduk:'Duduk',Berdiri:'Berdiri',Bergantian:'Bergantian'}).map(function(r){return ['Posisi kerja: '+r[0],r[1]];})),
+    note: obsAll.length>eo.length ? (obsAll.length-eo.length)+' observasi belum dinilai REBA dan belum masuk tabel ini.' : null});
+  var es=elig.filter(function(x){return x.o && num(x.o.skor_sarana)!=null;}), sar=desc(vals(es.map(function(x){return x.o.skor_sarana;})));
+  S.push({t:'5. Kondisi sarana kerja, n = '+es.length,h:['Sarana – indikator','Memenuhi, n (%)'],rows:TILIK.map(function(t,i){ return [t[0]+' – '+t[1], np(es.filter(function(x){return Number(x.o['t'+(i+1)])===1;}).length,es.length)]; }).concat([['Skor sarana (0–6), median (IQR)',fmtMed(sar,0)]])});
+  var ep=elig.filter(function(x){return bebanVal(x.p)!=null;}), bb=desc(ep.map(function(x){return bebanVal(x.p);}));
+  S.push({t:'6. Beban pelayanan pasien, n = '+ep.length,h:['Uraian','Nilai'],rows:[['Beban (pasien/hari), rerata ± SD',fmtDesc(bb,1)],['Beban (pasien/hari), median (IQR)',fmtMed(bb,1)],['Rentang',bb.n?r2(bb.min,1)+' – '+r2(bb.max,1):'—']],
+    note:'Nilai per responden pada formulir dan rekap dibulatkan ke bilangan bulat; statistik di tabel ini dihitung dari nilai sebelum dibulatkan.'});
+  var dg=desc(vals(fl.map(function(f){return f.jml_dokter_gigi;}))), tg=desc(vals(fl.map(function(f){return f.jml_tgm;}))), du=desc(vals(fl.map(function(f){return f.jml_dental_unit;}))), rp=desc(vals(fl.map(function(f){return f.rerata_pasien_poli;})));
+  var sum=function(s){ return s.n? Math.round(s.mean*s.n) : 0; };
+  S.push({t:'7. Karakteristik fasilitas (n = '+fl.length+' fasilitas)',h:['Uraian','n (%) / Rerata ± SD','Median (min–maks)'],rows:
+    countBy(fl,function(f){return String(f.jenis_fasilitas);},JENIS).map(function(r){return ['Jenis: '+r[0],r[1],''];})
+    .concat([['Dokter gigi per fasilitas (total '+sum(dg)+')',fmtDesc(dg),dg.n?r2(dg.med,0)+' ('+dg.min+'–'+dg.max+')':'—'],
+      ['Terapis gigi dan mulut per fasilitas (total '+sum(tg)+')',fmtDesc(tg),tg.n?r2(tg.med,0)+' ('+tg.min+'–'+tg.max+')':'—'],
+      ['Dental unit aktif per fasilitas (total '+sum(du)+')',fmtDesc(du),du.n?r2(du.med,0)+' ('+du.min+'–'+du.max+')':'—'],
+      ['Rerata pasien poli gigi per hari',fmtDesc(rp),rp.n?r2(rp.med,0)+' ('+rp.min+'–'+rp.max+')':'—']])});
   var corr=[]; var pairsOf=function(fx,fy){ return elig.map(function(x){ return [fx(x),fy(x)]; }).filter(function(p){ return num(p[0])!=null && num(p[1])!=null; }).map(function(p){ return [Number(p[0]),Number(p[1])]; }); };
   var targets=REGIONS.map(function(r){return ['NRS '+r.t.toLowerCase(),function(x){return x.r['c2_nrs_'+r.k];}];}).concat([['NRS maksimum',function(x){return x.r.nrs_maks;}]]);
-  [['Skor REBA',function(x){return x.o&&x.o.reba_akhir;}],['Beban pelayanan',function(x){return x.p&&x.p.beban_pelayanan;}],['Skor sarana',function(x){return x.o&&x.o.skor_sarana;}]].forEach(function(px){
+  [['Skor REBA',function(x){return x.o&&x.o.reba_akhir;}],['Beban pelayanan',function(x){return bebanVal(x.p);}],['Skor sarana',function(x){return x.o&&x.o.skor_sarana;}]].forEach(function(px){
     targets.forEach(function(t){ var s=spearman(pairsOf(px[1],t[1])); corr.push([px[0]+' × '+t[0], s.n, s.r==null?'—':r2(s.r,3), fmtP(s.p)]); }); });
-  S.push({t:'7. Analisis hubungan (Spearman, eksploratif)',h:['Pasangan variabel','n','rho','p'],rows:corr,note:'Korelasi rank Spearman dua sisi, dihitung bila n ≥ 4. Gunakan sebagai pemantauan; analisis final tetap mengikuti rencana analisis pada proposal.'});
+  S.push({t:'8. Analisis hubungan (Spearman, eksploratif)',h:['Pasangan variabel','n','rho','p'],rows:corr,note:'Korelasi rank Spearman dua sisi, dihitung bila n ≥ 4. Gunakan sebagai pemantauan; analisis final tetap mengikuti rencana analisis pada proposal.'});
   var ct=[1,2,3,4,5].map(function(k){ var g=eo.filter(function(x){return rebaCat(x.o.reba_akhir)===k;}), y=g.filter(function(x){return Number(x.r.keluhan_leher_punggung)===1;}).length; return [REBA_CAT[k], g.length, np(y,g.length||0), np(g.length-y,g.length||0)]; });
-  S.push({t:'8. Tabulasi silang kategori REBA × keluhan leher/punggung',h:['Kategori REBA','n','Ada keluhan','Tidak ada keluhan'],rows:ct.map(function(r){ return r[1]? r : [r[0],0,'—','—']; })});
-  var rel=m.filter(function(x){return x.o && num(x.o.reba_akhir)!=null && num(x.o.reliabilitas_skor)!=null;}).map(function(x){return [Number(x.o.reba_akhir),Number(x.o.reliabilitas_skor)];});
+  S.push({t:'9. Tabulasi silang kategori REBA × keluhan leher/punggung',h:['Kategori REBA','n','Ada keluhan','Tidak ada keluhan'],rows:ct.map(function(r){ return r[1]? r : [r[0],0,'—','—']; })});
+  var obsRows=(ADMIN.data.Observasi||[]), rel=obsRows.filter(function(o){return num(o.reba_akhir)!=null && num(o.reliabilitas_skor)!=null;}).map(function(o){return [Number(o.reba_akhir),Number(o.reliabilitas_skor)];});
+  var nSel=obsRows.filter(function(o){return o.dipilih_ulang==='Ya';}).length;
   var exact=rel.filter(function(p){return p[0]===p[1];}).length, catAg=rel.filter(function(p){return rebaCat(p[0])===rebaCat(p[1]);}).length, ic=icc21(rel);
-  S.push({t:'9. Keandalan penilaian REBA (intra-rater)',h:['Uraian','Nilai'],rows:[['Rekaman dinilai ulang',rel.length+' dari '+m.filter(function(x){return x.o;}).length+' ('+r2(pct(rel.length,m.filter(function(x){return x.o;}).length),1)+'%)'],['ICC(2,1) kesepakatan absolut',ic==null?'— (perlu ≥ 3 pasangan)':r2(ic,3)],['Skor identik',rel.length?np(exact,rel.length):'—'],['Kategori risiko sama',rel.length?np(catAg,rel.length):'—']]});
+  S.push({t:'10. Keandalan penilaian REBA (intra-rater)',h:['Uraian','Nilai'],rows:[['Rekaman terpilih untuk uji ulang',nSel+' dari '+obsRows.length+' ('+r2(pct(nSel,obsRows.length),1)+'%)'],['Sudah dinilai ulang',rel.length],['ICC(2,1) kesepakatan absolut',ic==null?'— (perlu ≥ 3 pasangan)':r2(ic,3)],['Skor identik',rel.length?np(exact,rel.length):'—'],['Kategori risiko sama',rel.length?np(catAg,rel.length):'—']]});
 
-  var head=['kode_responden','kecamatan','fasilitas','kelayakan','profesi','jenis_kelamin','usia','masa_kerja','keluhan_leher','nrs_leher','keluhan_punggung_atas','nrs_punggung_atas','keluhan_punggung_bawah','nrs_punggung_bawah','keluhan_leher_punggung','nrs_maks','reba_skor','reba_kategori','reba_kategori_label','kelompok_tindakan','posisi_kerja','skor_sarana','reba_ulang','beban_pelayanan','sum_pasien','sum_hari_aktif','kelengkapan'];
-  var rows=m.map(function(x){ var r=x.r||{},o=x.o||{},p=x.p||{};
-    return [x.kode,r.kecamatan||'',r.fasilitas||'',r.kelayakan||'',PROFESI[r.b3_profesi]||'',JK[r.b2_jenis_kelamin]||'',r.usia,r.masa_kerja,r.c1_leher,r.c2_nrs_leher,r.c1_punggung_atas,r.c2_nrs_punggung_atas,r.c1_punggung_bawah,r.c2_nrs_punggung_bawah,r.keluhan_leher_punggung,r.nrs_maks,o.reba_akhir,rebaCat(o.reba_akhir),o.reba_akhir!=null&&o.reba_akhir!==''?REBA_CAT[rebaCat(o.reba_akhir)]:'',KELOMPOK[o.kelompok_tindakan]||'',o.posisi_kerja||'',o.skor_sarana,o.reliabilitas_skor,p.beban_pelayanan,p.sum_a,p.sum_d,(x.r&&x.o&&x.p)?'Lengkap':'Belum lengkap']
+  var head=['kode_responden','kode_fasilitas','jenis_fasilitas','kecamatan','fasilitas','kelayakan','profesi','jenis_kelamin','usia','masa_kerja','keluhan_leher','nrs_leher','keluhan_punggung_atas','nrs_punggung_atas','keluhan_punggung_bawah','nrs_punggung_bawah','keluhan_leher_punggung','nrs_maks','status_reba','reba_skor_a','reba_skor_b','reba_skor_c','reba_aktivitas','reba_skor','reba_kategori','reba_kategori_label','kelompok_tindakan','posisi_kerja','skor_sarana','reba_ulang','beban_pelayanan','beban_pelayanan_desimal','sum_pasien','sum_hari_aktif','kelengkapan'];
+  var rows=m.map(function(x){ var r=x.r||{},o=x.o||{},p=x.p||{}, fk=o.kode_fasilitas||p.kode_fasilitas||'', fa=F[fk]||{};
+    return [x.kode,fk,JENIS[fa.jenis_fasilitas]||'',r.kecamatan||fa.kecamatan||'',r.fasilitas||'',r.kelayakan||'',PROFESI[r.b3_profesi]||'',JK[r.b2_jenis_kelamin]||'',r.usia,r.masa_kerja,r.c1_leher,r.c2_nrs_leher,r.c1_punggung_atas,r.c2_nrs_punggung_atas,r.c1_punggung_bawah,r.c2_nrs_punggung_bawah,r.keluhan_leher_punggung,r.nrs_maks,
+      x.o?(rebaDone(o)?'Selesai':'Belum dinilai'):'',o.reba_skor_a,o.reba_skor_b,o.reba_skor_c,o.reba_aktivitas,o.reba_akhir,rebaCat(o.reba_akhir),rebaDone(o)?REBA_CAT[rebaCat(o.reba_akhir)]:'',KELOMPOK[o.kelompok_tindakan]||'',o.posisi_kerja||'',o.skor_sarana,o.reliabilitas_skor,p.beban_pelayanan,p.beban_pelayanan_desimal,p.sum_a,p.sum_d,(x.r&&x.o&&x.p&&rebaDone(o))?'Lengkap':'Belum lengkap']
       .map(function(v){ return v==null?'':v; }); });
   return {sections:S,head:head,rows:rows,N:N};
 }
@@ -980,7 +1263,7 @@ function renderReport(){
     html+='<h3>'+esc(s.t)+'</h3><div class="tbl-wrap"><table><thead><tr>'+s.h.map(function(h,i){return '<th'+(i?' class="num"':'')+'>'+esc(h)+'</th>';}).join('')+'</tr></thead><tbody>'+
       s.rows.map(function(r){ return '<tr>'+r.map(function(c,i){ return '<td'+(i?' class="num"':'')+'>'+esc(c)+'</td>'; }).join('')+'</tr>'; }).join('')+'</tbody></table></div>'+(s.note?'<p class="note">'+esc(s.note)+'</p>':'');
   });
-  html+='<h3>10. Rekap data per responden</h3><div class="tbl-wrap"><table><thead><tr>'+R.head.map(function(h){return '<th>'+esc(h)+'</th>';}).join('')+'</tr></thead><tbody>'+
+  html+='<h3>11. Rekap data per responden</h3><div class="tbl-wrap"><table><thead><tr>'+R.head.map(function(h){return '<th>'+esc(h)+'</th>';}).join('')+'</tr></thead><tbody>'+
     (R.rows.length? R.rows.map(function(r){return '<tr>'+r.map(function(c){return '<td>'+esc(c)+'</td>';}).join('')+'</tr>';}).join('') : '<tr><td colspan="'+R.head.length+'">Belum ada data.</td></tr>')+'</tbody></table></div>';
   $('#report').innerHTML=html; ADMIN.report=R;
 }
@@ -998,7 +1281,8 @@ $('#btn-csv').addEventListener('click',function(){
   var a=document.createElement('a'); a.href=URL.createObjectURL(new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'})); a.download='rekap_penelitian_'+today()+'.csv'; document.body.appendChild(a); a.click(); a.remove();
 });
 $('#btn-print').addEventListener('click',function(){ window.print(); });
-if(!LIVE){ $('#btn-csv').hidden=true; $('#btn-print').hidden=true; }
+if(!LIVE && location.protocol!=='file:'){ $('#btn-csv').hidden=true; $('#btn-print').hidden=true; }
+
 
 /* ================= Charts ================= */
 function tok(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
@@ -1024,41 +1308,51 @@ function renderCharts(){
 
 /* ================= Demo backend (pratinjau tanpa Google) ================= */
 var Demo=(function(){
-  var KEY='msd_instrumen_demo_v1', db=null, pass='admin123';
+  var KEY='msd_instrumen_demo_v2', db=null, pass='admin123';
   function save(){ lsSet(KEY,JSON.stringify(db)); }
   function seed(){
-    var s=7; function rnd(){ s=(s*16807)%2147483647; return (s-1)/2147483646; } function ri(a,b){ return a+Math.floor(rnd()*(b-a+1)); }
-    var R=[],O=[],P=[], kec=['Kebayoran Baru','Tebet','Cilandak','Pasar Minggu','Jagakarsa'];
+    var s=11; function rnd(){ s=(s*16807)%2147483647; return (s-1)/2147483646; } function ri(a,b){ return a+Math.floor(rnd()*(b-a+1)); }
+    function pad(n){ return String(n).padStart(2,'0'); } function yes(p){ return rnd()<p?'1':''; }
+    function frame(o,p){
+      o[p+'_ts']=pad(ri(6,14))+':'+pad(ri(0,59)); o[p+'_leher']=ri(1,2); o[p+'_leher_adj']=yes(.5); o[p+'_batang']=ri(2,3); o[p+'_batang_adj']=yes(.5);
+      o[p+'_tungkai']=1; o[p+'_tungkai_adj']=rnd()<.2?1:0; o[p+'_beban']=0; o[p+'_beban_kejut']='';
+      o[p+'_lengan_atas']=ri(1,3); o[p+'_la_naik']=yes(.3); o[p+'_la_abduksi']=yes(.5); o[p+'_la_tumpu']=yes(.2); o[p+'_lengan_bawah']=ri(1,2);
+      o[p+'_pergelangan']=ri(1,2); o[p+'_perg_adj']=yes(.5); o[p+'_coupling']=ri(0,1); o[p+'_akt_statis']='1'; o[p+'_akt_ulang']=yes(.6); o[p+'_akt_cepat']='';
+    }
+    var R=[],O=[],P=[],FA=[], kec=['Kebayoran Baru','Tebet','Cilandak','Pasar Minggu','Jagakarsa'];
+    for(var f=1;f<=4;f++) FA.push({id:'demo-f'+f,timestamp:'2026-10-0'+f+'T08:00:00',kode_fasilitas:'F-0'+f,nama_fasilitas:(f%2?'Puskesmas ':'Pustu ')+kec[f],kecamatan:kec[f],tanggal_pengisian:'2026-10-0'+f,jenis_fasilitas:f%2?1:2,jml_dokter_gigi:ri(1,3),jml_tgm:ri(1,2),jml_dental_unit:ri(1,3),rerata_pasien_poli:ri(8,25),periode_data:'Juli–September 2026',sumber_data:'Profil fasilitas, Rekap kunjungan'});
     for(var i=1;i<=10;i++){
-      var k='CONTOH-'+String(i).padStart(2,'0'), elig=i!==9, ts='2026-10-'+String(10+i).padStart(2,'0')+'T09:00:00';
-      var r={id:'demo-r'+i,timestamp:ts,kode_responden:k,tanggal_pengisian:'2026-10-'+String(10+i).padStart(2,'0'),kecamatan:kec[i%5],fasilitas:i%3?'Puskesmas Kecamatan':'Puskesmas Pembantu',s1:'Ya',s2:'Ya',s3:elig?'Ya':'Tidak',s4:'Ya',kelayakan:elig?'Memenuhi syarat':'Tidak memenuhi syarat',petugas:'Peneliti'};
+      var k='CONTOH-'+pad(i), elig=i!==9, tgl='2026-10-'+pad(10+i), ts=tgl+'T09:00:00', fk='F-0'+(i%4+1);
+      var r={id:'demo-r'+i,timestamp:ts,kode_responden:k,tanggal_pengisian:tgl,kecamatan:kec[i%5],fasilitas:i%3?'Puskesmas Kecamatan':'Puskesmas Pembantu',s1:'Ya',s2:'Ya',s3:elig?'Ya':'Tidak',s4:'Ya',kelayakan:elig?'Memenuhi syarat':'Tidak memenuhi syarat',petugas:'Peneliti'};
       if(elig){ r.b1_tahun_lahir=ri(1972,1998); r.b2_jenis_kelamin=rnd()<.7?2:1; r.b3_profesi=rnd()<.5?1:2; r.b4_tahun_mulai=r.b1_tahun_lahir+ri(23,27); r.usia=2026-r.b1_tahun_lahir; r.masa_kerja=2026-r.b4_tahun_mulai;
         var any=0,mx=0; REGIONS.forEach(function(g,j){ var c=rnd()<[.7,.4,.55][j]?1:0, n=c?ri(2,8):0; r['c1_'+g.k]=c; r['c2_nrs_'+g.k]=n; any=any||c; mx=Math.max(mx,n); }); r.keluhan_leher_punggung=any; r.nrs_maks=mx; }
       R.push(r);
-      if(i<=8){ var o={id:'demo-o'+i,timestamp:ts,kode_responden:k,kode_rekaman:'V'+String(i).padStart(2,'0'),tanggal_perekaman:r.tanggal_pengisian,kode_fasilitas:'F'+(i%4+1),persetujuan_pasien:'Ya',jam_mulai:'09:10',jam_selesai:'09:'+String(30+ri(0,20)),periode_akhir_menit:ri(15,22),nama_tindakan:['Skeling','Penambalan komposit','Pencabutan gigi'][i%3],kelompok_tindakan:[1,2,3][i%3],posisi_kerja:rnd()<.7?'Duduk':'Bergantian',catatan_pelaksanaan:'Sesuai protokol'};
-        o.durasi_rekaman=minutes(o.jam_selesai)-minutes(o.jam_mulai); o.durasi_penilaian=o.periode_akhir_menit-5; var best=0;
-        for(var f=1;f<=3;f++){ var c2=ri(2,10), ak=ri(0,2); o['f'+f+'_ts']='0'+ri(6,9)+':'+String(ri(0,59)).padStart(2,'0'); o['f'+f+'_a']=ri(2,7); o['f'+f+'_b']=ri(1,6); o['f'+f+'_c']=c2; o['f'+f+'_akt']=ak; o['f'+f+'_reba']=c2+ak; if(c2+ak>best){best=c2+ak;o.ts_terpilih=o['f'+f+'_ts'];} }
-        o.reba_akhir=best; o.reba_kategori=rebaCat(best); o.reba_kategori_label=REBA_CAT[o.reba_kategori];
+      if(i<=8){ var o={id:'demo-o'+i,timestamp:ts,kode_responden:k,kode_rekaman:'V'+pad(i),tanggal_perekaman:tgl,kode_fasilitas:fk,persetujuan_pasien:'Ya',jam_mulai:'09:10',jam_selesai:'09:'+String(30+ri(0,20)),periode_akhir_menit:ri(15,22),nama_tindakan:['Skeling','Penambalan komposit','Pencabutan gigi'][i%3],kelompok_tindakan:[1,2,3][i%3],posisi_kerja:rnd()<.7?'Duduk':'Bergantian',catatan_pelaksanaan:'Sesuai protokol'};
+        o.durasi_rekaman=minutes(o.jam_selesai)-minutes(o.jam_mulai); o.durasi_penilaian=o.periode_akhir_menit-5;
         var sk=0; for(var t=1;t<=6;t++){ var v=rnd()<.6?1:0; o['t'+t]=v; sk+=v; } o.skor_sarana=sk;
-        if(i<=3){ o.reliabilitas_tanggal='2026-10-27'; o.reliabilitas_ts=o.ts_terpilih; o.reliabilitas_skor=best+(i===2?1:0); }
+        if(i<=6){ o.tanggal_penilaian_reba='2026-10-20'; o.penilai_reba='Peneliti'; frame(o,'f1'); frame(o,'f2'); if(i%2) frame(o,'f3'); }
+        if(i<=2) o.dipilih_ulang='Ya';
+        if(i===1){ frame(o,'r'); FR.forEach(function(x){ o['r_'+x]=o['f1_'+x]; }); o.r_ts=o.f1_ts; o.reliabilitas_tanggal='2026-10-28'; }
+        Object.assign(o, obsDerived(o));
         O.push(o); }
-      if(i<=7){ var p={id:'demo-p'+i,timestamp:ts,kode_responden:k,kode_fasilitas:'F'+(i%4+1),tanggal_penelusuran:r.tanggal_pengisian,petugas_pendamping:'Petugas rekam medis',bulan_1:'2026-07',bulan_2:'2026-08',bulan_3:'2026-09',verifikasi:'Sesuai',jenis_fasilitas:i%3?1:2,jml_dokter_gigi:ri(1,3),jml_tgm:ri(1,3),jml_dental_unit:ri(1,3),rerata_pasien_poli:ri(10,30),sumber_data:'Profil fasilitas, Rekap kunjungan'};
+      if(i<=7){ var p={id:'demo-p'+i,timestamp:ts,kode_responden:k,kode_fasilitas:fk,tanggal_penelusuran:tgl,petugas_pendamping:'Petugas rekam medis',bulan_1:'2026-07',bulan_2:'2026-08',bulan_3:'2026-09',verifikasi:'Sesuai'};
         var sa=0,sd2=0,sb=0,sc=0; for(var mth=1;mth<=3;mth++){ var b=ri(20,23),c=ri(0,4),a=ri(120,320); p['a_'+mth]=a;p['b_'+mth]=b;p['c_'+mth]=c;p['d_'+mth]=b-c; sa+=a;sb+=b;sc+=c;sd2+=b-c; }
-        p.sum_a=sa;p.sum_b=sb;p.sum_c=sc;p.sum_d=sd2;p.beban_pelayanan=Math.round(sa/sd2*100)/100; P.push(p); }
+        p.sum_a=sa;p.sum_b=sb;p.sum_c=sc;p.sum_d=sd2;p.beban_pelayanan=Math.round(sa/sd2);p.beban_pelayanan_desimal=Math.round(sa/sd2*100)/100; P.push(p); }
     }
-    return {Responden:R,Observasi:O,Pelayanan:P};
+    return {Responden:R,Observasi:O,Pelayanan:P,Fasilitas:FA};
   }
-  function init(){ if(db) return; try{ db=JSON.parse(lsGet(KEY)||'null'); }catch(e){ db=null; } if(!db||!db.Responden) { db=seed(); save(); } }
+  function init(){ if(db) return; try{ db=JSON.parse(lsGet(KEY)||'null'); }catch(e){ db=null; } if(!db||!db.Responden||!db.Fasilitas) { db=seed(); save(); } }
   function chk(p){ if(p!==pass) throw new Error('Kata sandi admin salah.'); }
   function clone(o){ return JSON.parse(JSON.stringify(o)); }
   return {
-    saveRecord:function(sh,rec){ init(); rec=clone(rec); rec.id=rec.id||('d'+Date.now().toString(36)); rec.timestamp=new Date().toISOString().slice(0,19); var a=db[sh], i=a.findIndex(function(r){return r.id===rec.id;}); if(i>=0) a[i]=rec; else a.push(rec); save(); return {id:rec.id,updated:i>=0}; },
+    saveRecord:function(sh,rec){ init(); rec=clone(rec); var key=KEYF[sh]; if(!String(rec[key]||'').trim()) throw new Error('Kode wajib diisi.'); rec.id=rec.id||('d'+Date.now().toString(36)); rec.timestamp=new Date().toISOString().slice(0,19); var a=db[sh], i=a.findIndex(function(r){return r.id===rec.id;}); if(i>=0) a[i]=rec; else a.push(rec); save(); return {id:rec.id,updated:i>=0}; },
+    updateFields:function(p,sh,id,fields){ chk(p); init(); var r=db[sh].filter(function(x){return x.id===id;})[0]; if(!r) throw new Error('Data tidak ditemukan.'); Object.keys(fields).forEach(function(k){ r[k]=fields[k]; }); save(); return true; },
     login:function(p){ chk(p); return true; },
-    listKodes:function(){ init(); return db.Responden.map(function(r){return r.kode_responden;}); },
+    listKodes:function(){ init(); return {responden:db.Responden.map(function(r){return r.kode_responden;}),fasilitas:db.Fasilitas.map(function(r){return r.kode_fasilitas;})}; },
     getAll:function(p){ chk(p); init(); var o=clone(db); o.sheetUrl=''; return o; },
     deleteRecord:function(p,sh,id){ chk(p); init(); db[sh]=db[sh].filter(function(r){return r.id!==id;}); save(); return true; },
-    writeReport:function(){ throw new Error('Pratinjau tidak tersambung ke Google Sheet. Tombol ini aktif setelah aplikasi dipasang di Apps Script.'); },
-    changePassword:function(){ throw new Error('Kata sandi tidak dapat diubah di pratinjau.'); }
+    writeReport:function(){ throw new Error('Mode uji lokal tidak tersambung ke Google Sheet. Tombol ini aktif pada versi yang tersambung ke Apps Script.'); },
+    changePassword:function(){ throw new Error('Kata sandi tidak dapat diubah di mode uji lokal.'); }
   };
 })();
 
