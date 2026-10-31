@@ -358,10 +358,11 @@ window.API_URL = "https://script.google.com/macros/s/AKfycbz3Q_PyyuTmeVcqChymsIZ
         </div>
         <div class="f"><span class="lbl">Kelompok tindakan</span><div class="opts col">
           <label class="opt"><input type="radio" name="kelompok_tindakan" value="1"><span>1 Preventif (skeling, <i>pit and fissure sealant</i>, aplikasi fluor)</span></label>
-          <label class="opt"><input type="radio" name="kelompok_tindakan" value="2"><span>2 Restoratif (penambalan, ART, perawatan saluran akar)</span></label>
-          <label class="opt"><input type="radio" name="kelompok_tindakan" value="3"><span>3 Eksodonsia dan bedah minor (pencabutan, insisi abses)</span></label>
-          <label class="opt"><input type="radio" name="kelompok_tindakan" value="4"><span>4 Lainnya</span></label>
-        </div><input type="text" name="kelompok_lainnya" placeholder="Sebutkan tindakan lainnya" data-show-if="kelompok_tindakan=4"></div>
+          <label class="opt"><input type="radio" name="kelompok_tindakan" value="2"><span>2 Restoratif (penambalan, ART)</span></label>
+          <label class="opt"><input type="radio" name="kelompok_tindakan" value="3"><span>3 Endodontik (pulpotomi, pulpektomi, perawatan saluran akar)</span></label>
+          <label class="opt"><input type="radio" name="kelompok_tindakan" value="4"><span>4 Eksodonsia dan bedah minor (pencabutan, insisi abses, odontektomi)</span></label>
+          <label class="opt"><input type="radio" name="kelompok_tindakan" value="5"><span>5 Lainnya</span></label>
+        </div><input type="text" name="kelompok_lainnya" placeholder="Sebutkan tindakan lainnya" data-show-if="kelompok_tindakan=5"></div>
         <div class="grid">
           <div class="f"><span class="lbl">Posisi kerja operator</span><div class="opts">
             <label class="opt"><input type="radio" name="posisi_kerja" value="Duduk"><span>Duduk</span></label>
@@ -676,7 +677,7 @@ var REGIONS = [{k:'leher',t:'Leher'},{k:'punggung_atas',t:'Punggung atas'},{k:'p
 var TILIK = [['Kursi operator','Pengaturan ketinggian'],['Kursi operator','Sandaran punggung'],['Kursi pasien (dental unit)','Pengaturan ketinggian'],['Kursi pasien (dental unit)','Pengaturan sandaran'],['Lampu dental unit','Pengaturan arah cahaya'],['Lampu dental unit','Pengaturan posisi']];
 var PROFESI = {'1':'Dokter gigi','2':'Terapis gigi dan mulut'};
 var JK = {'1':'Laki-laki','2':'Perempuan'};
-var KELOMPOK = {'1':'Preventif','2':'Restoratif','3':'Eksodonsia & bedah minor','4':'Lainnya'};
+var KELOMPOK = {'1':'Preventif','2':'Restoratif','3':'Endodontik','4':'Eksodonsia & bedah minor','5':'Lainnya'};
 
 /* ================= Images ================= */
 var CAPS = {BODYMAP:'Peta tubuh NMQ',NRS:'Numeric Rating Scale 0–10',REBA:'Lembar kerja REBA'};
@@ -1308,7 +1309,7 @@ function renderCharts(){
 
 /* ================= Demo backend (pratinjau tanpa Google) ================= */
 var Demo=(function(){
-  var KEY='msd_instrumen_demo_v2', db=null, pass='admin123';
+  var KEY='msd_instrumen_demo_v3', db=null, pass='admin123';
   function save(){ lsSet(KEY,JSON.stringify(db)); }
   function seed(){
     var s=11; function rnd(){ s=(s*16807)%2147483647; return (s-1)/2147483646; } function ri(a,b){ return a+Math.floor(rnd()*(b-a+1)); }
@@ -1327,7 +1328,7 @@ var Demo=(function(){
       if(elig){ r.b1_tahun_lahir=ri(1972,1998); r.b2_jenis_kelamin=rnd()<.7?2:1; r.b3_profesi=rnd()<.5?1:2; r.b4_tahun_mulai=r.b1_tahun_lahir+ri(23,27); r.usia=2026-r.b1_tahun_lahir; r.masa_kerja=2026-r.b4_tahun_mulai;
         var any=0,mx=0; REGIONS.forEach(function(g,j){ var c=rnd()<[.7,.4,.55][j]?1:0, n=c?ri(2,8):0; r['c1_'+g.k]=c; r['c2_nrs_'+g.k]=n; any=any||c; mx=Math.max(mx,n); }); r.keluhan_leher_punggung=any; r.nrs_maks=mx; }
       R.push(r);
-      if(i<=8){ var o={id:'demo-o'+i,timestamp:ts,kode_responden:k,kode_rekaman:'V'+pad(i),tanggal_perekaman:tgl,kode_fasilitas:fk,persetujuan_pasien:'Ya',jam_mulai:'09:10',jam_selesai:'09:'+String(30+ri(0,20)),periode_akhir_menit:ri(15,22),nama_tindakan:['Skeling','Penambalan komposit','Pencabutan gigi'][i%3],kelompok_tindakan:[1,2,3][i%3],posisi_kerja:rnd()<.7?'Duduk':'Bergantian',catatan_pelaksanaan:'Sesuai protokol'};
+      if(i<=8){ var o={id:'demo-o'+i,timestamp:ts,kode_responden:k,kode_rekaman:'V'+pad(i),tanggal_perekaman:tgl,kode_fasilitas:fk,persetujuan_pasien:'Ya',jam_mulai:'09:10',jam_selesai:'09:'+String(30+ri(0,20)),periode_akhir_menit:ri(15,22),nama_tindakan:['Skeling','Penambalan komposit','Perawatan saluran akar','Pencabutan gigi'][i%4],kelompok_tindakan:[1,2,3,4][i%4],posisi_kerja:rnd()<.7?'Duduk':'Bergantian',catatan_pelaksanaan:'Sesuai protokol'};
         o.durasi_rekaman=minutes(o.jam_selesai)-minutes(o.jam_mulai); o.durasi_penilaian=o.periode_akhir_menit-5;
         var sk=0; for(var t=1;t<=6;t++){ var v=rnd()<.6?1:0; o['t'+t]=v; sk+=v; } o.skor_sarana=sk;
         if(i<=6){ o.tanggal_penilaian_reba='2026-10-20'; o.penilai_reba='Peneliti'; frame(o,'f1'); frame(o,'f2'); if(i%2) frame(o,'f3'); }
